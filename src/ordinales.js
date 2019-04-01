@@ -14,7 +14,7 @@ const toOrdinal = (number, gender = 'm') => {
   let digits = [...number.toString()]
   digits.forEach((digit, i) => {
     ordinal += ordinalTextMapping[digits.length - i - 1][digit]
-    if (gender === 'f') ordinal[ordinal.length-1] = 'a'
+    if (gender === 'f') ordinal = ordinal.substr(0, [ordinal.length-1]) + 'a'
     ordinal += ' '
   })
   return ordinal.trim()
