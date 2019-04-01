@@ -1,0 +1,34 @@
+{
+  "name": "ordinales-js",
+  "version": "1.0.0",
+  "description": "Librería para convertir números cardinales en ordinales",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresSaa/ordinales-js.git"
+  },
+  "keywords": [
+    "convertir",
+    "numeros",
+    "ordinal",
+    "ordinales",
+    "castellano",
+    "español",
+    "js",
+    "javascript",
+    "module",
+    "modulo",
+    "lib",
+    "libreria",
+    "script"
+  ],
+  "author": "Andres Saa Narvaez <andres.saa.narvaez@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresSaa/ordinales-js/issues"
+  },
+  "homepage": "https://github.com/AndresSaa/ordinales-js#readme"
+}
