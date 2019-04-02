@@ -1,1 +1,3 @@
-export * from './dist/ordinales'
+"use strict";
+
+module.exports = require('./dist/ordinales');
