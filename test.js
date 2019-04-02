@@ -1,4 +1,3 @@
-const assert = require('assert');
-
-const ordinales = require('./index');
-assert.ok(typeof ordinales.toOrdinal === 'function');
+var assert = require('assert');
+var ordinales = require('./index');
+assert.ok(ordinales.toOrdinal(1).length > 0);

@@ -1,4 +1,6 @@
-import enhance from './enhance'
+"use strict"
+
+const enhance = require('./enhance')
 
 const ordinalTextMapping = [
   // unidades
@@ -26,4 +28,4 @@ const ordinales = {
   enhance: () => enhance(Number, 'toOrdinal', toOrdinal)
 }
 
-export default ordinales
+module.exports = ordinales
