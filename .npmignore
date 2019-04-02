@@ -10,3 +10,4 @@ coverage
 .travis.yml
 .npmignore
 babel.config.js
+.git
