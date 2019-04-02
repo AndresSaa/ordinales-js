@@ -17,14 +17,14 @@ yarn add ordinales-js
 ```
 
 ## API
-#### Métodos:
-##### Convertir a ordinal
-Convierte un número cardinal a su ordinal en español
+### Métodos:
+#### Convertir a ordinal
+Convierte un número cardinal a su ordinal en español.
 ```javascript
 ordinales.toOrdinal(numero, genero)
 ```
-##### Extender "Number"
-Extiende el tipo "Number" para que pueda utilizar la conversión a cardinal
+#### Extender "Number"
+Extiende el tipo "Number" para que pueda utilizar la conversión a cardinal.
 ```javascript
 ordinales.enhance()
 ```
@@ -34,7 +34,7 @@ Esta librería sólo soporta la conversión a números ordinales en español.
 
 Convertir un número cardinal en ordinal es tan sencillo como:
 ```javascript
-const ordinales = require("ordinales-js");
+const ordinales = require('ordinales-js');
 ordinales.toOrdinal(1) // primero
 ordinales.toOrdinal(63, 'f') // sexagésima tercera
 ordinales.toOrdinal(829) // octingentésimo vigésimo noveno
@@ -43,7 +43,7 @@ ordinales.toOrdinal(917, 'f') // noningentésima décima septima
 
 Extender "Number" y utlizar el método sobre una variable número
 ```javascript
-const ordinales = require("ordinales-js");
+const ordinales = require('ordinales-js');
 ordinales.enhance()
 const numero = 256
 numero.toOrdinal() // ducentésimo quincuagésimo sexto
