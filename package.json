@@ -1,6 +1,6 @@
 {
   "name": "ordinales-js",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Librería para convertir números cardinales en ordinales",
   "main": "index.js",
   "scripts": {
