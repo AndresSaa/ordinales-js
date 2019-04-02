@@ -1,5 +1,4 @@
 .DS_Store
-test
 node_modules
 npm-debug*
 coverage
@@ -9,5 +8,5 @@ coverage
 .eslintrc
 .travis.yml
 .npmignore
-babel.config.js
+.babelrc
 .git
