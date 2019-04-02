@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/npm/v/ordinales-js.svg)](https://www.npmjs.com/package/ordinales-js)
 [![License](https://img.shields.io/npm/l/ordinales-js.svg)](https://www.npmjs.com/package/ordinales-js)
 [![Downloads](https://img.shields.io/npm/dm/ordinales-js.svg)](https://npmcharts.com/compare/ordinales-js?minimal=true)
+[![devDependencies Status](https://david-dm.org/AndresSaa/ordinales-js/dev-status.svg)](https://david-dm.org/AndresSaa/ordinales-js?type=dev)
 ---
 Librería para convertir números cardinales a ordinales en español.
 
