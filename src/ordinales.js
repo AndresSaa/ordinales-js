@@ -23,9 +23,7 @@ const toOrdinal = (number = 0, gender = 'm') => {
   return ordinal.trim()
 }
 
-const ordinales = {
+module.exports = {
   toOrdinal,
   enhance: () => enhance(Number, 'toOrdinal', toOrdinal)
 }
-
-module.exports = ordinales
