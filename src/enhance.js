@@ -9,4 +9,4 @@ const enhance = (type, name, fn) => {
 	}
 }
 
-export default enhance
+module.exports = enhance
