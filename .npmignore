@@ -1,0 +1,11 @@
+.DS_Store
+test
+node_modules
+npm-debug*
+coverage
+.nyc_output
+.editorconfig
+.eslintignore
+.eslintrc
+.travis.yml
+.npmignore
