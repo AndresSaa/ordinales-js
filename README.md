@@ -9,11 +9,11 @@ Librería para convertir números cardinales a ordinales en español.
 
 ## Instalación
 ```
-npm install ordinal-js --save
+npm install ordinales-js --save
 ```
 o si prefieres utilizar `yarn`
 ```
-yarn add ordinal-js
+yarn add ordinales-js
 ```
 
 ## API
