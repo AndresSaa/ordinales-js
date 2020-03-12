@@ -49,3 +49,9 @@ ordinales.enhance()
 const numero = 256
 numero.toOrdinal() // ducentésimo quincuagésimo sexto
 ```
+
+## Demo
+Puedes probar a ejecutar el script demo y ver cómo funciona la librería
+```
+npm run demo
+```

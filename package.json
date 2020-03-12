@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "test": "eslint ./src && node test.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "demo": "npm run build && node demo"
   },
   "repository": {
     "type": "git",
