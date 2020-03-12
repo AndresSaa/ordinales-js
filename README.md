@@ -40,6 +40,7 @@ ordinales.toOrdinal(1) // primero
 ordinales.toOrdinal(63, 'f') // sexagésima tercera
 ordinales.toOrdinal(829) // octingentésimo vigésimo noveno
 ordinales.toOrdinal(917, 'f') // noningentésima décima septima
+ordinales.toOrdinal(6170) // seismilésimo centésimo septuagésimo
 ```
 
 Extender "Number" y utlizar el método sobre una variable número
