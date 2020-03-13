@@ -1,4 +1,9 @@
-# ordinales-js
+<h1 align="center"> ordinales-js </h1> <br>
+
+<p align="center">
+    <img alt="ordinales-js" title="ordinales-js" src="https://i.imgur.com/c6m87z4.png" max-width="800">
+</p>
+
 [![Build Status](https://travis-ci.org/AndresSaa/ordinales-js.svg?branch=master)](https://travis-ci.org/AndresSaa/ordinales-js)
 [![Version](https://img.shields.io/npm/v/ordinales-js.svg)](https://www.npmjs.com/package/ordinales-js)
 [![License](https://img.shields.io/npm/l/ordinales-js.svg)](https://www.npmjs.com/package/ordinales-js)
