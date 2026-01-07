@@ -2,7 +2,7 @@
   "name": "ordinales-js",
   "version": "1.0.15",
   "description": "Librería para convertir números cardinales en ordinales",
-  "main": "index.js",
+  "main": "src/ordinales.js",
   "scripts": {
     "build": "babel src --out-dir dist",
     "test": "node test.js",
