@@ -1,12 +1,18 @@
 {
   "name": "ordinales-js",
-  "version": "1.1",
+  "version": "2.0.0",
   "description": "Librería para convertir números cardinales en ordinales",
-  "main": "src/ordinales.js",
+  "type": "module",
+  "main": "./src/ordinales.js",
+  "exports": {
+    ".": "./src/ordinales.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "test": "node test.js",
-    "lint": "eslint ./src",
+    "test": "node --test test.js",
+    "lint": "eslint src",
     "demo": "node demo.js"
   },
   "repository": {
@@ -35,13 +41,6 @@
   },
   "homepage": "https://github.com/AndresSaa/ordinales-js#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^9.39.2"
-  },
-  "dependencies": {
-    "core-js": "^2.6.5"
+    "eslint": "^9.39.4"
   }
 }

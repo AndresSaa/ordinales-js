@@ -1,24 +1,17 @@
-const { toOrdinal } = require('./src/ordinales');
+import { toOrdinal } from './src/ordinales.js'
 
-console.log("\n--- DEMOSTRACIÓN DE RESULTADOS ---\n");
+console.log("\n--- DEMOSTRACIÓN DE RESULTADOS ---\n")
 
-// Vamos a probar estos números clave
-const numeros = [1, 3, 10, 21, 23, 31, 101];
+const numeros = [1, 3, 10, 21, 23, 31, 101, 9999, 21000, 1000000]
 
-console.log("NUM | NORMAL (M)           | APÓCOPE (M) [NUEVO]  | FEMENINO");
-console.log("----|----------------------|----------------------|-----------------");
+console.log("NUM      | NORMAL (M)                    | APÓCOPE (M)                   | FEMENINO")
+console.log("---------|-------------------------------|-------------------------------|------------------------------")
 
 numeros.forEach(n => {
-    const normal = toOrdinal(n, 'm');       // Comportamiento de siempre
-    const conApocope = toOrdinal(n, 'm', true); // Tu nueva funcionalidad
-    const femenino = toOrdinal(n, 'f', true);   // Femenino (debe ignorar apócope)
+  const col1 = n.toString().padEnd(8)
+  const col2 = toOrdinal(n, 'm').padEnd(29)
+  const col3 = toOrdinal(n, 'm', true).padEnd(29)
+  console.log(`${col1} | ${col2} | ${col3} | ${toOrdinal(n, 'f')}`)
+})
 
-    // Formateamos para que se vea como tabla
-    const col1 = n.toString().padEnd(3);
-    const col2 = normal.padEnd(20);
-    const col3 = conApocope.padEnd(20);
-
-    console.log(`${col1} | ${col2} | ${col3} | ${femenino}`);
-});
-
-console.log("\n----------------------------------\n");
+console.log("\n----------------------------------\n")

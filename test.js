@@ -1,27 +1,41 @@
-var assert = require('assert');
-var ordinales = require('./src/ordinales');
+import { test } from 'node:test'
+import assert from 'node:assert/strict'
+import { toOrdinal } from './src/ordinales.js'
 
-console.log("Iniciando tests...");
+test('ordinales básicos', () => {
+  assert.strictEqual(toOrdinal(1),      'primero')
+  assert.strictEqual(toOrdinal(3),      'tercero')
+  assert.strictEqual(toOrdinal(1, 'f'), 'primera')
+  assert.strictEqual(toOrdinal(21),     'vigésimo primero')
+})
 
-// 1. COMPROBACIONES BÁSICAS (Lo que ya hacía la librería)
-// Verificamos que no hemos roto la funcionalidad original
-assert.strictEqual(ordinales.toOrdinal(1), 'primero', 'Fallo en 1 básico');
-assert.strictEqual(ordinales.toOrdinal(3), 'tercero', 'Fallo en 3 básico');
-assert.strictEqual(ordinales.toOrdinal(1, 'f'), 'primera', 'Fallo en 1 femenino');
-assert.strictEqual(ordinales.toOrdinal(21), 'vigésimo primero', 'Fallo en 21 básico');
+test('apócope masculino', () => {
+  assert.strictEqual(toOrdinal(1,   'm', true), 'primer')
+  assert.strictEqual(toOrdinal(3,   'm', true), 'tercer')
+  assert.strictEqual(toOrdinal(21,  'm', true), 'vigésimo primer')
+  assert.strictEqual(toOrdinal(23,  'm', true), 'vigésimo tercer')
+  assert.strictEqual(toOrdinal(101, 'm', true), 'centésimo primer')
+})
 
-// 2. NUEVA FUNCIONALIDAD: APÓCOPE (primer / tercer)
-// Casos donde SÍ debe cortar la palabra
-assert.strictEqual(ordinales.toOrdinal(1, 'm', true), 'primer', 'Fallo: 1 debería ser primer');
-assert.strictEqual(ordinales.toOrdinal(3, 'm', true), 'tercer', 'Fallo: 3 debería ser tercer');
-assert.strictEqual(ordinales.toOrdinal(21, 'm', true), 'vigésimo primer', 'Fallo: 21 debería ser vigésimo primer');
-assert.strictEqual(ordinales.toOrdinal(23, 'm', true), 'vigésimo tercer', 'Fallo: 23 debería ser vigésimo tercer');
-assert.strictEqual(ordinales.toOrdinal(101, 'm', true), 'centésimo primer', 'Fallo: 101 debería ser centésimo primer');
+test('apócope no aplica en femenino ni sin terminación especial', () => {
+  assert.strictEqual(toOrdinal(1,  'f', true), 'primera')
+  assert.strictEqual(toOrdinal(10, 'm', true), 'décimo')
+  assert.strictEqual(toOrdinal(8,  'm', true), 'octavo')
+})
 
-// 3. CASOS DONDE NO DEBE APLICAR APÓCOPE
-// Aunque activemos 'true', si es femenino o no termina en o/a compatible, no se toca.
-assert.strictEqual(ordinales.toOrdinal(1, 'f', true), 'primera', 'Fallo: Femenino no debe apocoparse');
-assert.strictEqual(ordinales.toOrdinal(10, 'm', true), 'décimo', 'Fallo: 10 no debe apocoparse');
-assert.strictEqual(ordinales.toOrdinal(8, 'm', true), 'octavo', 'Fallo: 8 no debe apocoparse');
+test('números grandes — miles', () => {
+  assert.strictEqual(toOrdinal(9999),          'nuevemilésimo noningentésimo nonagésimo noveno')
+  assert.strictEqual(toOrdinal(10000),         'décimo milésimo')
+  assert.strictEqual(toOrdinal(21000),         'vigésimo primer milésimo')
+  assert.strictEqual(toOrdinal(21000, 'f'),    'vigésima primera milésima')
+  assert.strictEqual(toOrdinal(21000, 'm', true), 'vigésimo primer milésimo')
+  assert.strictEqual(toOrdinal(100000),        'centésimo milésimo')
+  assert.strictEqual(toOrdinal(123456),        'centésimo vigésimo tercer milésimo cuadrigentésimo quincuagésimo sexto')
+})
 
-console.log("¡Todos los tests pasaron correctamente!");
+test('números grandes — millones', () => {
+  assert.strictEqual(toOrdinal(1000000),          'millonésimo')
+  assert.strictEqual(toOrdinal(2000000),          'dosmillonésimo')
+  assert.strictEqual(toOrdinal(21000000, 'm', true), 'vigésimo primer millonésimo')
+  assert.strictEqual(toOrdinal(21000000, 'f'),    'vigésima primera millonésima')
+})
