@@ -27,6 +27,8 @@ npm install ordinales-js
 
 ## Uso
 
+**ES Modules**
+
 ```js
 import { toOrdinal } from 'ordinales-js'
 
@@ -36,6 +38,16 @@ toOrdinal(1, 'm', true)  // 'primer'
 toOrdinal(21)            // 'vigésimo primero'
 toOrdinal(63, 'f')       // 'sexagésima tercera'
 toOrdinal(829)           // 'octingentésimo vigésimo noveno'
+```
+
+**CommonJS**
+
+```js
+const { toOrdinal } = require('ordinales-js')
+
+toOrdinal(1)             // 'primero'
+toOrdinal(1, 'f')        // 'primera'
+toOrdinal(1, 'm', true)  // 'primer'
 ```
 
 ## API
@@ -85,7 +97,10 @@ toOrdinal(21000000, 'm', true) // 'vigésimo primer millonésimo'
 Extiende el prototipo de `Number` para usar `toOrdinal` directamente sobre cualquier número.
 
 ```js
+// ESM
 import { enhance } from 'ordinales-js'
+// CJS
+const { enhance } = require('ordinales-js')
 
 enhance()
 
