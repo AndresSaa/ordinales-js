@@ -7,6 +7,11 @@ node_modules/
 # Dist directory
 dist/
 
+# Lockfiles — no se commitean en librerías públicas
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Optional npm cache directory
 .npm
 
@@ -19,11 +24,3 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Yarn
-yarn-error.log
-.pnp/
-.pnp.js
-
-# Yarn Integrity file
-.yarn-integrity

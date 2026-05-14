@@ -1,6 +1,6 @@
 # ordinales-js
 
-![Ordinales](https://i.imgur.com/yBevw0u.png)
+![Ordinales](./assets/ordinales-pic.png)
 
 ---
 
@@ -12,7 +12,7 @@
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/ordinales-js)](https://bundlephobia.com/package/ordinales-js)
 [![Sin dependencias](https://img.shields.io/badge/dependencias-cero-brightgreen)](https://www.npmjs.com/package/ordinales-js?activeTab=dependencies)
 
-Librería para convertir números cardinales a ordinales en español.  
+Librería para convertir números cardinales a ordinales en español.
 Soporta género (masculino/femenino), apócope y números hasta millones.
 
 ## Requisitos
@@ -30,11 +30,12 @@ npm install ordinales-js
 ```js
 import { toOrdinal } from 'ordinales-js'
 
-toOrdinal(1)           // 'primero'
-toOrdinal(1, 'f')      // 'primera'
-toOrdinal(21)          // 'vigésimo primero'
-toOrdinal(63, 'f')     // 'sexagésima tercera'
-toOrdinal(829)         // 'octingentésimo vigésimo noveno'
+toOrdinal(1)             // 'primero'
+toOrdinal(1, 'f')        // 'primera'
+toOrdinal(1, 'm', true)  // 'primer'
+toOrdinal(21)            // 'vigésimo primero'
+toOrdinal(63, 'f')       // 'sexagésima tercera'
+toOrdinal(829)           // 'octingentésimo vigésimo noveno'
 ```
 
 ## API
