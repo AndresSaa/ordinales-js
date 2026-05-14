@@ -1,4 +1,6 @@
-import addToPrototype from './enhance.js'
+'use strict'
+
+const addToPrototype = require('./enhance.js')
 
 const UNIDADES = ['','primero','segundo','tercero','cuarto','quinto','sexto','séptimo','octavo','noveno']
 const DECENAS  = ['','décimo','vigésimo','trigésimo','cuadragésimo','quincuagésimo','sexagésimo','septuagésimo','octagésimo','nonagésimo']
@@ -56,7 +58,7 @@ const applyApocope = (ordinal, gender) => {
   return ordinal
 }
 
-export const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
+const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
   const ordinal = buildParts(number, gender)
     .map(part => gender === 'f' ? part.slice(0, -1) + 'a' : part)
     .join(' ')
@@ -64,4 +66,6 @@ export const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
   return apocope ? applyApocope(ordinal, gender) : ordinal
 }
 
-export const enhance = () => addToPrototype(Number, 'toOrdinal', toOrdinal)
+const enhance = () => addToPrototype(Number, 'toOrdinal', toOrdinal)
+
+module.exports = { toOrdinal, enhance }

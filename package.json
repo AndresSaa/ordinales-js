@@ -2,18 +2,20 @@
   "name": "ordinales-js",
   "version": "2.0.0",
   "description": "Librería para convertir números cardinales en ordinales",
-  "type": "module",
   "main": "./src/ordinales.js",
   "exports": {
-    ".": "./src/ordinales.js"
+    ".": {
+      "require": "./src/ordinales.js",
+      "import": "./src/ordinales.mjs"
+    }
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "node --test test.js",
+    "test": "node --test test.mjs",
     "lint": "eslint src",
-    "demo": "node demo.js"
+    "demo": "node demo.mjs"
   },
   "repository": {
     "type": "git",

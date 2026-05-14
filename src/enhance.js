@@ -1,3 +1,5 @@
+'use strict'
+
 const enhance = (type, name, fn) => {
   if (!type.prototype[name]) {
     type.prototype[name] = function (...params) {
@@ -6,4 +8,4 @@ const enhance = (type, name, fn) => {
   }
 }
 
-export default enhance
+module.exports = enhance
