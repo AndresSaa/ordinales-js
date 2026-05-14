@@ -32,6 +32,8 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - Dependencias de producción: cero (se elimina `core-js`)
 - Dependencias de desarrollo: `@babel/cli`, `@babel/core`, `@babel/preset-env`, `babel-eslint`
 - Archivos obsoletos: `index.js`, `.babelrc`, `.eslintrc.js`, `yarn.lock`, `dist/`
+- Referencia al por el autor original:
+  licencia cambiada de ISC a **MIT**, titular Andrés Saá Narváez
 
 ---
 
