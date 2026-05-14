@@ -9,8 +9,8 @@ console.log("---------|-------------------------------|-------------------------
 
 numeros.forEach(n => {
   const col1 = n.toString().padEnd(8)
-  const col2 = toOrdinal(n, 'm').padEnd(29)
-  const col3 = toOrdinal(n, 'm', true).padEnd(29)
+  const col2 = toOrdinal(n).padEnd(29)
+  const col3 = toOrdinal(n, { apocope: true }).padEnd(29)
   console.log(`${col1} | ${col2} | ${col3} | ${toOrdinal(n, 'f')}`)
 })
 
