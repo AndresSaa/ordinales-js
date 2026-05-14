@@ -10,6 +10,9 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 ## [2.0.0] - 2026-05-14
 
 ### Añadido
+- **API de opciones**: el segundo parámetro acepta un objeto `{ gender, apocope }`
+  además del string de género (`'m'` / `'f'`), permitiendo combinar género y apócope
+  en una sola llamada: `toOrdinal(21, { gender: 'f', apocope: true })`
 - Composición recursiva de ordinales: soporta números hasta millones y más
   (`décimo milésimo`, `vigésimo primer milésimo`, `dosmillonésimo`…)
 - Apócope interno automático al componer escalas en masculino
@@ -40,8 +43,8 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 ## [1.1.0] - 2025
 
 ### Añadido
-- Parámetro `apocope` (tercero en `toOrdinal`) para obtener las formas apocopadas
-  `primer` y `tercer` cuando el ordinal precede a un sustantivo masculino singular
+- Soporte de apócope: formas `primer` y `tercer` cuando el ordinal precede
+  a un sustantivo masculino singular
 - Script `demo` simplificado, ejecutable directamente desde `src/`
 
 ### Corregido

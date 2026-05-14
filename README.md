@@ -32,12 +32,13 @@ npm install ordinales-js
 ```js
 import { toOrdinal } from 'ordinales-js'
 
-toOrdinal(1)             // 'primero'
-toOrdinal(1, 'f')        // 'primera'
-toOrdinal(1, 'm', true)  // 'primer'
-toOrdinal(21)            // 'vigésimo primero'
-toOrdinal(63, 'f')       // 'sexagésima tercera'
-toOrdinal(829)           // 'octingentésimo vigésimo noveno'
+toOrdinal(1)                          // 'primero'
+toOrdinal(1, 'f')                     // 'primera'
+toOrdinal(1, { apocope: true })       // 'primer'
+toOrdinal(21)                         // 'vigésimo primero'
+toOrdinal(63, { gender: 'f' })        // 'sexagésima tercera'
+toOrdinal(101, { apocope: true })     // 'centésimo primer'
+toOrdinal(829)                        // 'octingentésimo vigésimo noveno'
 ```
 
 **CommonJS**
@@ -45,26 +46,41 @@ toOrdinal(829)           // 'octingentésimo vigésimo noveno'
 ```js
 const { toOrdinal } = require('ordinales-js')
 
-toOrdinal(1)             // 'primero'
-toOrdinal(1, 'f')        // 'primera'
-toOrdinal(1, 'm', true)  // 'primer'
+toOrdinal(1)                          // 'primero'
+toOrdinal(1, 'f')                     // 'primera'
+toOrdinal(1, { apocope: true })       // 'primer'
 ```
 
 ## API
 
-### `toOrdinal(numero, genero?, apocope?)`
+### `toOrdinal(numero, opciones?)`
 
-| Parámetro | Tipo | Por defecto | Descripción |
-|-----------|------|-------------|-------------|
-| `numero` | `number` | `0` | Número cardinal a convertir |
-| `genero` | `'m'` \| `'f'` | `'m'` | Género del ordinal |
-| `apocope` | `boolean` | `false` | Aplica apócope al resultado (`primero` → `primer`, `tercero` → `tercer`) |
+El segundo parámetro acepta un `string` de género o un objeto de opciones.
+
+| Forma | Ejemplo |
+|-------|---------|
+| `toOrdinal(n)` | género masculino por defecto |
+| `toOrdinal(n, 'f')` | género femenino |
+| `toOrdinal(n, { gender, apocope })` | objeto de opciones |
+
+#### Opciones
+
+| Opción | Tipo | Por defecto | Descripción |
+|--------|------|-------------|-------------|
+| `gender` | `'m'` \| `'f'` | `'m'` | Género del ordinal |
+| `apocope` | `boolean` | `false` | Aplica apócope (`primero` → `primer`, `tercero` → `tercer`) |
 
 #### Género
 
 ```js
-toOrdinal(1, 'm')  // 'primero'
-toOrdinal(1, 'f')  // 'primera'
+// Forma abreviada — string
+toOrdinal(1, 'm')             // 'primero'
+toOrdinal(1, 'f')             // 'primera'
+
+// Forma objeto
+toOrdinal(1,  { gender: 'f' })  // 'primera'
+toOrdinal(21, { gender: 'f' })  // 'vigésima primera'
+toOrdinal(63, { gender: 'f' })  // 'sexagésima tercera'
 ```
 
 #### Apócope
@@ -72,24 +88,24 @@ toOrdinal(1, 'f')  // 'primera'
 Se utiliza cuando el ordinal precede a un sustantivo masculino.
 
 ```js
-toOrdinal(1, 'm', true)   // 'primer'
-toOrdinal(3, 'm', true)   // 'tercer'
-toOrdinal(21, 'm', true)  // 'vigésimo primer'
+toOrdinal(1,  { apocope: true })             // 'primer'
+toOrdinal(3,  { apocope: true })             // 'tercer'
+toOrdinal(21, { apocope: true })             // 'vigésimo primer'
 
-// El apócope no afecta al femenino
-toOrdinal(1, 'f', true)   // 'primera'
+// Con género femenino explícito — el apócope no aplica
+toOrdinal(1, { gender: 'f', apocope: true }) // 'primera'
 ```
 
 #### Números grandes
 
 ```js
-toOrdinal(10000)             // 'décimo milésimo'
-toOrdinal(21000)             // 'vigésimo primer milésimo'
-toOrdinal(21000, 'f')        // 'vigésima primera milésima'
-toOrdinal(123456)            // 'centésimo vigésimo tercer milésimo cuadrigentésimo quincuagésimo sexto'
-toOrdinal(1000000)           // 'millonésimo'
-toOrdinal(2000000)           // 'dosmillonésimo'
-toOrdinal(21000000, 'm', true) // 'vigésimo primer millonésimo'
+toOrdinal(10000)                        // 'décimo milésimo'
+toOrdinal(21000)                        // 'vigésimo primer milésimo'
+toOrdinal(21000, 'f')                   // 'vigésima primera milésima'
+toOrdinal(123456)                       // 'centésimo vigésimo tercer milésimo cuadrigentésimo quincuagésimo sexto'
+toOrdinal(1000000)                      // 'millonésimo'
+toOrdinal(2000000)                      // 'dosmillonésimo'
+toOrdinal(21000000, { apocope: true })  // 'vigésimo primer millonésimo'
 ```
 
 ### `enhance()`
@@ -104,9 +120,11 @@ const { enhance } = require('ordinales-js')
 
 enhance()
 
-const numero = 256
-numero.toOrdinal()        // 'ducentésimo quincuagésimo sexto'
-numero.toOrdinal('f')     // 'ducentésima quincuagésima sexta'
+const numero = 21
+numero.toOrdinal()                        // 'vigésimo primero'
+numero.toOrdinal('f')                     // 'vigésima primera'
+numero.toOrdinal({ gender: 'f' })         // 'vigésima primera'
+numero.toOrdinal({ apocope: true })       // 'vigésimo primer'
 ```
 
 ## Demo
@@ -125,4 +143,4 @@ npm run demo
 
 ## Licencia
 
-[ISC](./LICENSE)
+[MIT](./LICENSE)

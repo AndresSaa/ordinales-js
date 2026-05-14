@@ -57,7 +57,10 @@ const buildParts = (n, gender = 'm') => {
 }
 
 // Convierte un número a su forma ordinal en español, con opciones de género y apócope
-const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
+const toOrdinal = (number = 0, options = 'm') => {
+  const gender  = typeof options === 'object' ? (options.gender  ?? 'm')   : options
+  const apocope = typeof options === 'object' ? (options.apocope ?? false) : false
+
   const ordinal = buildParts(number, gender)
     .map(part => gender === 'f' ? part.slice(0, -1) + 'a' : part)
     .join(' ')
