@@ -13,16 +13,26 @@ const ordinalTextMapping = [
   ['','milésimo','dosmilésimo','tresmilésimo ','cuatromilésimo','cincomilésimo','seismilésimo','sietemilésimo','ochomilésimo','nuevemilésimo']
 ]
 
-const toOrdinal = (number = 0, gender = 'm') => {
+const applyApocope = (ordinal, gender) => {
+  if (gender !== 'm') return ordinal
+  if (ordinal.endsWith('primero') || ordinal.endsWith('tercero')) return ordinal.slice(0, -1)
+  return ordinal
+}
+
+const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
   let ordinal = ''
   let digits = [...number.toString()]
+
   digits.forEach((digit, i) => {
     let digit_ordinal = ordinalTextMapping[digits.length - i - 1][digit]
     if (!digit_ordinal) return
     if (gender === 'f') digit_ordinal = digit_ordinal.substr(0, [digit_ordinal.length-1]) + 'a'
     ordinal += digit_ordinal + ' '
   })
-  return ordinal.trim()
+
+  ordinal = ordinal.trim()
+
+  return apocope ? applyApocope(ordinal, gender) : ordinal
 }
 
 module.exports = {
