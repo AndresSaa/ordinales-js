@@ -41,7 +41,7 @@
     "script"
   ],
   "author": "Andres Saa Narvaez <andres.saa.narvaez@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AndresSaa/ordinales-js/issues"
   },
