@@ -15,21 +15,25 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - Apócope interno automático al componer escalas en masculino
   (`vigésimo primer milésimo`, no `vigésimo primero milésimo`)
 - Género femenino correcto en números grandes (`vigésima primera milésima`)
+- Compatibilidad dual: `require('ordinales-js')` y `import { toOrdinal } from 'ordinales-js'`
+  funcionan sin pasos de build adicionales
 - Workflow de CI con GitHub Actions (Node 18, 20 y 22)
-- Campo `exports` y `engines` en `package.json`
+- Campos `exports`, `engines` y `files` en `package.json`
+- Script `prepublishOnly` para validar tests antes de cada publicación en npm
 
 ### Cambiado
-- **ROTURA**: La librería ahora usa ES Modules (`import/export`). Requiere Node ≥ 18
-- **ROTURA**: `require('ordinales-js')` ya no funciona; usar `import { toOrdinal } from 'ordinales-js'`
+- **ROTURA**: Requiere Node ≥ 18
 - Tests migrados a `node:test` (integrado en Node, sin dependencias extra)
-- ESLint migrado a flat config (`eslint.config.js`)
+- ESLint migrado a flat config (`eslint.config.cjs`)
 - Gestor de paquetes cambiado de yarn a npm
-- Versión mínima de Node establecida en 18
+- Lockfiles excluidos del repositorio (práctica recomendada para librerías públicas)
 
 ### Eliminado
 - Dependencias de producción: cero (se elimina `core-js`)
 - Dependencias de desarrollo: `@babel/cli`, `@babel/core`, `@babel/preset-env`, `babel-eslint`
 - Archivos obsoletos: `index.js`, `.babelrc`, `.eslintrc.js`, `yarn.lock`, `dist/`
+- Referencia al por el autor original:
+  licencia cambiada de ISC a **MIT**, titular Andrés Saá Narváez
 
 ---
 

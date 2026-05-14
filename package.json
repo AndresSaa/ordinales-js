@@ -9,13 +9,17 @@
       "import": "./src/ordinales.mjs"
     }
   },
+  "files": [
+    "src/"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
     "test": "node --test test.mjs",
     "lint": "eslint src",
-    "demo": "node demo.mjs"
+    "demo": "node demo.mjs",
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
@@ -37,7 +41,7 @@
     "script"
   ],
   "author": "Andres Saa Narvaez <andres.saa.narvaez@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AndresSaa/ordinales-js/issues"
   },
