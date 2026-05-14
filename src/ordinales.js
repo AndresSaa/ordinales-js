@@ -2,6 +2,7 @@
 
 const addToPrototype = require('./enhance.js')
 
+// Palabras para unidades, decenas y centenas. El índice corresponde al número que representan
 const UNIDADES = ['','primero','segundo','tercero','cuarto','quinto','sexto','séptimo','octavo','noveno']
 const DECENAS  = ['','décimo','vigésimo','trigésimo','cuadragésimo','quincuagésimo','sexagésimo','septuagésimo','octagésimo','nonagésimo']
 const CENTENAS = ['','centésimo','ducentésimo','tricentésimo','cuadrigentésimo','quingentésimo','sexcentésimo','septingentésimo','octingentésimo','noningentésimo']
@@ -9,15 +10,18 @@ const CENTENAS = ['','centésimo','ducentésimo','tricentésimo','cuadrigentési
 // Prefijos para palabras compuestas con la escala: dos+milésimo = dosmilésimo
 const SCALE_PREFIXES = ['','','dos','tres','cuatro','cinco','seis','siete','ocho','nueve']
 
+// Escalas mayores a 1000. El índice corresponde a la potencia de 10 que representan (mil = 10^3, millón = 10^6)
 const SCALES = [
   { value: 1000000, single: 'millonésimo' },
   { value: 1000,    single: 'milésimo' },
 ]
 
-// Apocopa la última palabra antes de una escala (uso interno): primero → primer
-const apocopeWord = word =>
-  (word.endsWith('primero') || word.endsWith('tercero')) ? word.slice(0, -1) : word
+// En español, "primero" y "tercero" se apocopan a "primer" y "tercer" cuando van antes de un sustantivo masculino
+const applyApocope = (word, gender) =>
+  gender === 'm' && (word.endsWith('primero') || word.endsWith('tercero'))
+    ? word.slice(0, -1) : word
 
+// Construye las partes del ordinal para un número dado. Por ejemplo, para 1234 devuelve ["milésimo", "ducentésimo", "trigésimo", "cuarto"]
 const buildParts = (n, gender = 'm') => {
   if (n <= 0) return []
 
@@ -33,7 +37,7 @@ const buildParts = (n, gender = 'm') => {
         parts.push(SCALE_PREFIXES[multiplier] + single)
       } else {
         const mParts = buildParts(multiplier, gender)
-        if (gender === 'm') mParts[mParts.length - 1] = apocopeWord(mParts[mParts.length - 1])
+        mParts[mParts.length - 1] = applyApocope(mParts[mParts.length - 1], gender)
         parts.push(...mParts, single)
       }
 
@@ -52,12 +56,7 @@ const buildParts = (n, gender = 'm') => {
   return parts
 }
 
-const applyApocope = (ordinal, gender) => {
-  if (gender !== 'm') return ordinal
-  if (ordinal.endsWith('primero') || ordinal.endsWith('tercero')) return ordinal.slice(0, -1)
-  return ordinal
-}
-
+// Convierte un número a su forma ordinal en español, con opciones de género y apócope
 const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
   const ordinal = buildParts(number, gender)
     .map(part => gender === 'f' ? part.slice(0, -1) + 'a' : part)
@@ -66,6 +65,7 @@ const toOrdinal = (number = 0, gender = 'm', apocope = false) => {
   return apocope ? applyApocope(ordinal, gender) : ordinal
 }
 
+// Agrega el método toOrdinal al prototipo de Number
 const enhance = () => addToPrototype(Number, 'toOrdinal', toOrdinal)
 
 module.exports = { toOrdinal, enhance }
