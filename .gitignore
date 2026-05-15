@@ -1,6 +1,9 @@
 # Mac files
 .DS_Store
 
+# Claude Code local settings
+.claude/
+
 # Dependency directories
 node_modules/
 
