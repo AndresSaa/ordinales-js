@@ -70,12 +70,6 @@ toOrdinal(3, genero)                  // 'tercera'
 
 ### `toOrdinal(numero, opciones?)`
 
-El paquete incluye tipos TypeScript nativos — no requiere `@types/ordinales-js`.
-
-```ts
-import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
-```
-
 El segundo parámetro acepta un `string` de género o un objeto de opciones.
 
 | Forma | Ejemplo |
@@ -94,9 +88,9 @@ El segundo parámetro acepta un `string` de género o un objeto de opciones.
 #### Género
 
 ```js
-// Forma abreviada — string
-toOrdinal(1, 'm')             // 'primero'
-toOrdinal(1, 'f')             // 'primera'
+// Forma abreviada (string)
+toOrdinal(1, 'm')               // 'primero'
+toOrdinal(1, 'f')               // 'primera'
 
 // Forma objeto
 toOrdinal(1,  { gender: 'f' })  // 'primera'
@@ -113,7 +107,7 @@ toOrdinal(1,  { apocope: true })             // 'primer'
 toOrdinal(3,  { apocope: true })             // 'tercer'
 toOrdinal(21, { apocope: true })             // 'vigésimo primer'
 
-// Con género femenino explícito — el apócope no aplica
+// Con género femenino explícito, el apócope no aplica
 toOrdinal(1, { gender: 'f', apocope: true }) // 'primera'
 ```
 
@@ -142,24 +136,38 @@ const { enhance } = require('ordinales-js')
 enhance()
 
 const numero = 21
-numero.toOrdinal()                        // 'vigésimo primero'
-numero.toOrdinal('f')                     // 'vigésima primera'
-numero.toOrdinal({ gender: 'f' })         // 'vigésima primera'
-numero.toOrdinal({ apocope: true })       // 'vigésimo primer'
+numero.toOrdinal()                    // 'vigésimo primero'
+numero.toOrdinal('f')                 // 'vigésima primera'
+numero.toOrdinal({ gender: 'f' })     // 'vigésima primera'
+numero.toOrdinal({ apocope: true })   // 'vigésimo primer'
+```
+
+### Tipos TypeScript
+
+El paquete incluye tipos nativos, sin necesidad de instalar `@types/ordinales-js`.
+
+```ts
+import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
+
+const opciones: OrdinalOptions = { gender: 'f', apocope: true }
+toOrdinal(21, opciones)   // 'vigésima primera'
+
+const genero: OrdinalGender = 'f'
+toOrdinal(3, genero)      // 'tercera'
 ```
 
 ## Casos de borde
 
 | Llamada | Resultado |
 |---------|-----------|
-| `toOrdinal(0)` | `''` — cero no tiene ordinal en español |
-| `toOrdinal(-5)` | `''` — los negativos tampoco |
-| `toOrdinal(1.7)` | `'primero'` — los decimales se truncan (`Math.trunc`) |
+| `toOrdinal(0)` | `''` (el cero no tiene ordinal en español) |
+| `toOrdinal(-5)` | `''` (los negativos tampoco) |
+| `toOrdinal(1.7)` | `'primero'` (los decimales se truncan con `Math.trunc`) |
 | `toOrdinal(NaN)` | lanza `TypeError` |
 | `toOrdinal('foo')` | lanza `TypeError` |
 | `toOrdinal(null)` | lanza `TypeError` |
 | `toOrdinal(undefined)` | lanza `TypeError` |
-| `toOrdinal({ gender: 'f' })` | lanza `TypeError` — objeto pasado como número |
+| `toOrdinal({ gender: 'f' })` | lanza `TypeError` (objeto recibido como número) |
 
 ## Demo
 
