@@ -11,6 +11,8 @@
 [![Node](https://img.shields.io/node/v/ordinales-js)](https://www.npmjs.com/package/ordinales-js)
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/ordinales-js)](https://bundlephobia.com/package/ordinales-js)
 [![Sin dependencias](https://img.shields.io/badge/dependencias-cero-brightgreen)](https://www.npmjs.com/package/ordinales-js?activeTab=dependencies)
+[![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178C6?logo=typescript&logoColor=white)](./src/ordinales.d.ts)
+[![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](./CHANGELOG.md)
 
 Librería para convertir números cardinales a ordinales en español.
 Soporta género (masculino/femenino), apócope y números hasta millones.
@@ -51,9 +53,28 @@ toOrdinal(1, 'f')                     // 'primera'
 toOrdinal(1, { apocope: true })       // 'primer'
 ```
 
+**TypeScript**
+
+```ts
+import { toOrdinal } from 'ordinales-js'
+import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
+
+const opciones: OrdinalOptions = { gender: 'f', apocope: true }
+toOrdinal(21, opciones)               // 'vigésima primera'
+
+const genero: OrdinalGender = 'f'
+toOrdinal(3, genero)                  // 'tercera'
+```
+
 ## API
 
 ### `toOrdinal(numero, opciones?)`
+
+El paquete incluye tipos TypeScript nativos — no requiere `@types/ordinales-js`.
+
+```ts
+import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
+```
 
 El segundo parámetro acepta un `string` de género o un objeto de opciones.
 
@@ -153,6 +174,10 @@ npm run demo
 3. Realiza tus cambios y añade tests si es necesario
 4. Asegúrate de que los tests pasan: `npm test`
 5. Abre una Pull Request describiendo el cambio
+
+## Changelog
+
+Consulta [CHANGELOG.md](./CHANGELOG.md) para el historial de versiones.
 
 ## Licencia
 
