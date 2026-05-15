@@ -15,3 +15,27 @@ numeros.forEach(n => {
 })
 
 console.log("\n----------------------------------\n")
+
+console.log("--- CASOS DE BORDE ---\n")
+
+const edgeCases = [
+  { label: 'toOrdinal(0)',               call: () => toOrdinal(0) },
+  { label: 'toOrdinal(-5)',              call: () => toOrdinal(-5) },
+  { label: 'toOrdinal(1.9)',             call: () => toOrdinal(1.9) },
+  { label: 'toOrdinal(21.7)',            call: () => toOrdinal(21.7) },
+  { label: "toOrdinal('foo')",           call: () => toOrdinal('foo') },
+  { label: 'toOrdinal(null)',            call: () => toOrdinal(null) },
+  { label: 'toOrdinal(undefined)',       call: () => toOrdinal(undefined) },
+  { label: 'toOrdinal(NaN)',             call: () => toOrdinal(NaN) },
+  { label: "toOrdinal({ gender: 'f' })", call: () => toOrdinal({ gender: 'f' }) },
+]
+
+edgeCases.forEach(({ label, call }) => {
+  try {
+    console.log(`${label.padEnd(30)} → '${call()}'`)
+  } catch (e) {
+    console.log(`${label.padEnd(30)} → ${e.constructor.name}: ${e.message}`)
+  }
+})
+
+console.log("\n----------------------------------\n")

@@ -127,6 +127,19 @@ numero.toOrdinal({ gender: 'f' })         // 'vigésima primera'
 numero.toOrdinal({ apocope: true })       // 'vigésimo primer'
 ```
 
+## Casos de borde
+
+| Llamada | Resultado |
+|---------|-----------|
+| `toOrdinal(0)` | `''` — cero no tiene ordinal en español |
+| `toOrdinal(-5)` | `''` — los negativos tampoco |
+| `toOrdinal(1.7)` | `'primero'` — los decimales se truncan (`Math.trunc`) |
+| `toOrdinal(NaN)` | lanza `TypeError` |
+| `toOrdinal('foo')` | lanza `TypeError` |
+| `toOrdinal(null)` | lanza `TypeError` |
+| `toOrdinal(undefined)` | lanza `TypeError` |
+| `toOrdinal({ gender: 'f' })` | lanza `TypeError` — objeto pasado como número |
+
 ## Demo
 
 ```bash
