@@ -1,4 +1,4 @@
-import { toOrdinal } from './src/ordinales.js'
+import { toOrdinal } from './src/index.js'
 
 console.log("\n--- DEMOSTRACIÓN DE RESULTADOS ---\n")
 

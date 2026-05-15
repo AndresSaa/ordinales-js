@@ -2,10 +2,10 @@
   "name": "ordinales-js",
   "version": "2.0.0",
   "description": "Librería para convertir números cardinales en ordinales",
-  "main": "./src/ordinales.js",
+  "main": "./src/index.js",
   "exports": {
     ".": {
-      "require": "./src/ordinales.js",
+      "require": "./src/index.js",
       "import": "./src/ordinales.mjs"
     }
   },

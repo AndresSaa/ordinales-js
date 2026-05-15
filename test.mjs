@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { toOrdinal } from './src/ordinales.js'
+import { toOrdinal } from './src/index.js'
 
 test('ordinales básicos', () => {
   assert.strictEqual(toOrdinal(1),               'primero')
