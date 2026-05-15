@@ -7,6 +7,24 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.1.0] - 2026-05-15
+
+### Añadido
+- Tipos TypeScript (`src/ordinales.d.ts`): `OrdinalGender`, `OrdinalOptions`, `toOrdinal`, `enhance`
+- Campos `types` y `exports.types` en `package.json` apuntando al `.d.ts`
+- Manejo explícito de casos de borde en `toOrdinal`:
+  - `0` y negativos devuelven `''`
+  - Floats se truncan con `Math.trunc` (`1.9` → `'primero'`)
+  - Tipos inválidos (`NaN`, `string`, `null`, `undefined`, objetos, arrays) lanzan `TypeError`
+- Nuevos tests: tres bloques de casos de borde (valores sin ordinal, floats, tipos inválidos)
+- Sección "Casos de borde" en el README con tabla de comportamiento
+
+### Cambiado
+- Entry point movido a `src/index.js` (reexporta `ordinales.js`); `main` y `exports.require` actualizados
+- `.travis.yml` eliminado (CI cubierto por GitHub Actions)
+
+---
+
 ## [2.0.0] - 2026-05-14
 
 ### Añadido
