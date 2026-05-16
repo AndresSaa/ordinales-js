@@ -7,6 +7,20 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.2.1] - 2026-05-16
+
+### Añadido
+- JSDoc completo en las funciones exportadas (`toOrdinal`, `enhance`) con descripción
+  bilingüe, `@param`, `@returns`, `@throws` y `@example`
+- Sección "Casos de uso" en el README con ejemplos reales de uso de la librería
+
+### Cambiado
+- Subtítulo del README: descripción en español con tagline en inglés en cursiva
+- Badge de tipos TypeScript: se añade badge dinámico de npm junto al estático
+- `keywords` y `description` en `package.json` optimizados para indexación en npm y GitHub
+
+---
+
 ## [2.2.0] - 2026-05-16
 
 ### Añadido
