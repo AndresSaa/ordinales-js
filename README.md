@@ -15,7 +15,7 @@
 [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](./CHANGELOG.md)
 
 Librería para convertir números cardinales a ordinales en español.
-Soporta género (masculino/femenino), apócope y números hasta millones.
+Soporta género (masculino/femenino), apócope, abreviaturas tipográficas RAE y números hasta millones.
 
 ## Requisitos
 
@@ -34,13 +34,17 @@ npm install ordinales-js
 ```js
 import { toOrdinal } from 'ordinales-js'
 
-toOrdinal(1)                          // 'primero'
-toOrdinal(1, 'f')                     // 'primera'
-toOrdinal(1, { apocope: true })       // 'primer'
-toOrdinal(21)                         // 'vigésimo primero'
-toOrdinal(63, { gender: 'f' })        // 'sexagésima tercera'
-toOrdinal(101, { apocope: true })     // 'centésimo primer'
-toOrdinal(829)                        // 'octingentésimo vigésimo noveno'
+toOrdinal(1)                                      // 'primero'
+toOrdinal(1, 'f')                                 // 'primera'
+toOrdinal(1, { apocope: true })                   // 'primer'
+toOrdinal(21)                                     // 'vigésimo primero'
+toOrdinal(63, { gender: 'f' })                    // 'sexagésima tercera'
+toOrdinal(101, { apocope: true })                 // 'centésimo primer'
+toOrdinal(829)                                    // 'octingentésimo vigésimo noveno'
+toOrdinal(1,  { format: 'abbr' })                 // '1.º'
+toOrdinal(1,  { gender: 'f', format: 'abbr' })    // '1.ª'
+toOrdinal(1,  { apocope: true, format: 'abbr' })  // '1.ᵉʳ'
+toOrdinal(1,  { format: 'abbr', abbrDot: false }) // '1º'
 ```
 
 **CommonJS**
@@ -48,22 +52,25 @@ toOrdinal(829)                        // 'octingentésimo vigésimo noveno'
 ```js
 const { toOrdinal } = require('ordinales-js')
 
-toOrdinal(1)                          // 'primero'
-toOrdinal(1, 'f')                     // 'primera'
-toOrdinal(1, { apocope: true })       // 'primer'
+toOrdinal(1)                      // 'primero'
+toOrdinal(1, 'f')                 // 'primera'
+toOrdinal(1, { apocope: true })   // 'primer'
 ```
 
 **TypeScript**
 
 ```ts
 import { toOrdinal } from 'ordinales-js'
-import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
+import type { OrdinalGender, OrdinalOptions, OrdinalFormat } from 'ordinales-js'
 
 const opciones: OrdinalOptions = { gender: 'f', apocope: true }
-toOrdinal(21, opciones)               // 'vigésima primera'
+toOrdinal(21, opciones)           // 'vigésima primera'
 
 const genero: OrdinalGender = 'f'
-toOrdinal(3, genero)                  // 'tercera'
+toOrdinal(3, genero)              // 'tercera'
+
+const formato: OrdinalFormat = 'abbr'
+toOrdinal(1, { format: formato }) // '1.º'
 ```
 
 ## API
@@ -76,7 +83,7 @@ El segundo parámetro acepta un `string` de género o un objeto de opciones.
 |-------|---------|
 | `toOrdinal(n)` | género masculino por defecto |
 | `toOrdinal(n, 'f')` | género femenino |
-| `toOrdinal(n, { gender, apocope })` | objeto de opciones |
+| `toOrdinal(n, { gender, apocope, format, abbrDot })` | objeto de opciones |
 
 #### Opciones
 
@@ -84,6 +91,8 @@ El segundo parámetro acepta un `string` de género o un objeto de opciones.
 |--------|------|-------------|-------------|
 | `gender` | `'m'` \| `'f'` | `'m'` | Género del ordinal |
 | `apocope` | `boolean` | `false` | Aplica apócope (`primero` → `primer`, `tercero` → `tercer`) |
+| `format` | `'full'` \| `'abbr'` | `'full'` | `'abbr'` devuelve la abreviatura tipográfica RAE con superíndice unicode |
+| `abbrDot` | `boolean` | `true` | Incluye el punto separador en `'abbr'` (`1.º` vs `1º`). Solo aplica cuando `format: 'abbr'` |
 
 #### Género
 
@@ -109,6 +118,26 @@ toOrdinal(21, { apocope: true })             // 'vigésimo primer'
 
 // Con género femenino explícito, el apócope no aplica
 toOrdinal(1, { gender: 'f', apocope: true }) // 'primera'
+```
+
+#### Abreviatura tipográfica (`format: 'abbr'`)
+
+Devuelve la forma abreviada oficial RAE usando superíndices unicode (`.º`, `.ª`, `.ᵉʳ`).
+
+```js
+toOrdinal(1,  { format: 'abbr' })                // '1.º'
+toOrdinal(1,  { gender: 'f', format: 'abbr' })   // '1.ª'
+toOrdinal(3,  { apocope: true, format: 'abbr' }) // '3.ᵉʳ'
+toOrdinal(21, { gender: 'f', format: 'abbr' })   // '21.ª'
+toOrdinal(21, { apocope: true, format: 'abbr' }) // '21.º'  (apócope solo aplica en 1.ᵉʳ y 3.ᵉʳ)
+```
+
+El punto separador sigue la norma RAE y está activo por defecto. Se puede omitir con `abbrDot: false` para contextos donde se prefiere la forma sin punto:
+
+```js
+toOrdinal(1,  { format: 'abbr', abbrDot: false })                // '1º'
+toOrdinal(1,  { gender: 'f', format: 'abbr', abbrDot: false })   // '1ª'
+toOrdinal(3,  { apocope: true, format: 'abbr', abbrDot: false }) // '3ᵉʳ'
 ```
 
 #### Números grandes
@@ -147,13 +176,16 @@ numero.toOrdinal({ apocope: true })   // 'vigésimo primer'
 El paquete incluye tipos nativos, sin necesidad de instalar `@types/ordinales-js`.
 
 ```ts
-import type { OrdinalGender, OrdinalOptions } from 'ordinales-js'
+import type { OrdinalGender, OrdinalOptions, OrdinalFormat } from 'ordinales-js'
 
 const opciones: OrdinalOptions = { gender: 'f', apocope: true }
-toOrdinal(21, opciones)   // 'vigésima primera'
+toOrdinal(21, opciones)           // 'vigésima primera'
 
 const genero: OrdinalGender = 'f'
-toOrdinal(3, genero)      // 'tercera'
+toOrdinal(3, genero)              // 'tercera'
+
+const formato: OrdinalFormat = 'abbr'
+toOrdinal(1, { format: formato }) // '1.º'
 ```
 
 ## Casos de borde
