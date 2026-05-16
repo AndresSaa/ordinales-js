@@ -56,7 +56,25 @@ const buildParts = (n, gender = 'm') => {
   return parts
 }
 
-// Convierte un número a su forma ordinal en español, con opciones de género y apócope
+/**
+ * Convierte un número cardinal a su forma ordinal en español.
+ * Converts a cardinal number to its Spanish ordinal form.
+ *
+ * @param {number} numero - Número a convertir (entero positivo; los decimales se truncan)
+ * @param {'m'|'f'|Object} [opciones='m'] - Género abreviado o objeto de opciones
+ * @param {'m'|'f'} [opciones.gender='m'] - Género del ordinal
+ * @param {boolean} [opciones.apocope=false] - Aplica apócope (primero→primer, tercero→tercer)
+ * @param {'full'|'abbr'} [opciones.format='full'] - Formato: texto completo o abreviatura tipográfica RAE
+ * @param {boolean} [opciones.abbrDot=true] - Incluye punto en la abreviatura (1.º vs 1º)
+ * @returns {string} Ordinal en español, o cadena vacía para 0 y negativos
+ * @throws {TypeError} Si el primer argumento no es un número válido
+ *
+ * @example
+ * toOrdinal(1)                                    // 'primero'
+ * toOrdinal(1, 'f')                               // 'primera'
+ * toOrdinal(21, { gender: 'f', apocope: true })   // 'vigésima primera'
+ * toOrdinal(1, { format: 'abbr' })                // '1.º'
+ */
 const toOrdinal = (number, options = 'm') => {
   if (typeof number !== 'number' || isNaN(number)) throw new TypeError(`toOrdinal: se esperaba un número, se recibió ${typeof number}`)
 
@@ -80,7 +98,14 @@ const toOrdinal = (number, options = 'm') => {
   return apocope ? applyApocope(ordinal, gender) : ordinal
 }
 
-// Agrega el método toOrdinal al prototipo de Number
+/**
+ * Extiende el prototipo de Number con el método toOrdinal.
+ * Extends the Number prototype with the toOrdinal method.
+ *
+ * @example
+ * enhance()
+ * (21).toOrdinal('f') // 'vigésima primera'
+ */
 const enhance = () => addToPrototype(Number, 'toOrdinal', toOrdinal)
 
 module.exports = { toOrdinal, enhance }

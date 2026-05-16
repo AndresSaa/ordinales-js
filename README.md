@@ -12,10 +12,12 @@
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/ordinales-js)](https://bundlephobia.com/package/ordinales-js)
 [![Sin dependencias](https://img.shields.io/badge/dependencias-cero-brightgreen)](https://www.npmjs.com/package/ordinales-js?activeTab=dependencies)
 [![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178C6?logo=typescript&logoColor=white)](./src/ordinales.d.ts)
+[![Tipos](https://img.shields.io/npm/types/ordinales-js)](https://github.com/AndresSaa/ordinales-js/blob/master/src/ordinales.d.ts)
 [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](./CHANGELOG.md)
 
-Librería para convertir números cardinales a ordinales en español.
-Soporta género (masculino/femenino), apócope, abreviaturas tipográficas RAE y números hasta millones.
+Convierte números cardinales a ordinales en español, con soporte de género, apócope y abreviaturas tipográficas RAE.
+
+*Spanish ordinal numbers library with gender, apocope and typographic abbreviation support.*
 
 ## Requisitos
 
@@ -206,6 +208,18 @@ toOrdinal(1, { format: formato }) // '1.º'
 ```bash
 npm run demo
 ```
+
+## Casos de uso
+
+Cualquier interfaz que necesite expresar posiciones o rangos de forma escrita puede beneficiarse de esta librería.
+
+En **documentos legales y contratos notariales**, los ordinales escritos son requisito formal: cláusulas como "el vigésimo primer día del mes" o referencias a artículos ("el tercero del presente contrato") requieren precisión lingüística y de género. La opción `format: 'abbr'` cubre además las abreviaturas tipográficas RAE habituales en encabezados de documentos (1.º, 2.ª, 3.ᵉʳ).
+
+En **formularios web y aplicaciones de gestión** es común presentar pasos de procesos, ediciones o versiones como ordinales ("paso primero", "segunda edición"). La API acepta género y apócope para adaptarse al sustantivo que acompaña al ordinal sin lógica adicional en el cliente.
+
+En **generadores de facturas e informes** los ordinales aparecen en referencias de línea, secciones o trimestres: "primer trimestre", "segunda línea de pedido", "tercer concepto facturado". La abreviatura tipográfica (`format: 'abbr'`) cubre además encabezados de columna como 1.º, 2.º, 3.º
+
+En **listados y rankings** mostrados al usuario (clasificaciones, resultados paginados, posiciones en tablas) el femenino automático permite mostrar "primera posición" o "tercera participante" sin tablas de traducción adicionales.
 
 ## Contribuir
 

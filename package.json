@@ -1,7 +1,7 @@
 {
   "name": "ordinales-js",
-  "version": "2.2.0",
-  "description": "Librería para convertir números cardinales en ordinales",
+  "version": "2.2.1",
+  "description": "Librería para convertir números cardinales a ordinales en español. Spanish ordinal numbers library with gender and apocope support.",
   "main": "./src/index.js",
   "types": "./src/ordinales.d.ts",
   "exports": {
@@ -28,19 +28,17 @@
     "url": "git+https://github.com/AndresSaa/ordinales-js.git"
   },
   "keywords": [
-    "convertir",
-    "numeros",
     "ordinal",
     "ordinales",
-    "castellano",
+    "ordinal-es",
+    "spanish-ordinal",
+    "números-ordinales",
+    "spanish-numbers",
+    "ordinal-numbers",
     "español",
-    "js",
-    "javascript",
-    "module",
-    "modulo",
-    "lib",
-    "libreria",
-    "script"
+    "spanish",
+    "cardinal-to-ordinal",
+    "apocope"
   ],
   "author": "Andres Saa Narvaez <andres.saa.narvaez@gmail.com>",
   "license": "MIT",
