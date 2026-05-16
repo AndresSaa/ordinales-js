@@ -11,7 +11,34 @@ numeros.forEach(n => {
   const col1 = n.toString().padEnd(8)
   const col2 = toOrdinal(n).padEnd(29)
   const col3 = toOrdinal(n, { apocope: true }).padEnd(29)
-  console.log(`${col1} | ${col2} | ${col3} | ${toOrdinal(n, 'f')}`)
+  const col4 = toOrdinal(n, 'f')
+  console.log(`${col1} | ${col2} | ${col3} | ${col4}`)
+})
+
+console.log("\n--- ABREVIATURAS CON PUNTO (format: 'abbr') ---\n")
+
+console.log("NUM      | ABREV. (M) | ABREV. APÓCOPE | ABREV. FEMENINO")
+console.log("---------|------------|----------------|----------------")
+
+numeros.forEach(n => {
+  const col1 = n.toString().padEnd(8)
+  const col2 = toOrdinal(n, { format: 'abbr' }).padEnd(10)
+  const col3 = toOrdinal(n, { apocope: true, format: 'abbr' }).padEnd(14)
+  const col4 = toOrdinal(n, { gender: 'f', format: 'abbr' })
+  console.log(`${col1} | ${col2} | ${col3} | ${col4}`)
+})
+
+console.log("\n--- ABREVIATURAS SIN PUNTO (format: 'abbr', abbrDot: false) ---\n")
+
+console.log("NUM      | ABREV. (M) | ABREV. APÓCOPE | ABREV. FEMENINO")
+console.log("---------|------------|----------------|----------------")
+
+numeros.forEach(n => {
+  const col1 = n.toString().padEnd(8)
+  const col2 = toOrdinal(n, { format: 'abbr', abbrDot: false }).padEnd(10)
+  const col3 = toOrdinal(n, { apocope: true, format: 'abbr', abbrDot: false }).padEnd(14)
+  const col4 = toOrdinal(n, { gender: 'f', format: 'abbr', abbrDot: false })
+  console.log(`${col1} | ${col2} | ${col3} | ${col4}`)
 })
 
 console.log("\n----------------------------------\n")

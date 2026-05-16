@@ -7,6 +7,19 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.2.0] - 2026-05-16
+
+### Añadido
+- Opción `format: 'full' | 'abbr'` en `toOrdinal` (por defecto `'full'`)
+- `'abbr'` devuelve la abreviatura tipográfica oficial RAE con superíndices unicode:
+  `1.º`, `1.ª`, `1.ᵉʳ`, `3.ᵉʳ`
+- Opción `abbrDot: boolean` (por defecto `true`) para omitir el punto separador en `'abbr'`:
+  `1º`, `1ª`, `3ᵉʳ`
+- Nuevo tipo exportado `OrdinalFormat` en `src/ordinales.d.ts`
+- `abbrDot` añadido a la interfaz `OrdinalOptions`
+
+---
+
 ## [2.1.0] - 2026-05-15
 
 ### Añadido
