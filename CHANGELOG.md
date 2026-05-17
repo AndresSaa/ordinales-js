@@ -19,6 +19,8 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 - `format: 'abbr'` ahora usa modifier letters (`ᵒ` U+1D52, `ᵃ` U+1D43) en lugar de los
   indicadores ordinales (`º` U+00BA, `ª` U+00AA), consistentes con `ᵉʳ` ya existente
   y sin el subrayado que algunos navegadores aplican a los indicadores ordinales
+- El apócope en `format: 'abbr'` ahora aplica a todos los ordinales cuyo último
+  componente es primero o tercero (`21.ᵉʳ`, `23.ᵉʳ`, `101.ᵉʳ`…), no solo a 1 y 3
 
 ---
 

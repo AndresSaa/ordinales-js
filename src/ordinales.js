@@ -90,11 +90,11 @@ const toOrdinal = (number, options = 'm') => {
   if (format === 'abbr') {
     if (n <= 0) return ''
     if (abbrStyle === 'plain') {
-      if (apocope && gender !== 'f' && (n === 1 || n === 3)) return `${n}er`
+      if (apocope && gender !== 'f' && (n % 10 === 1 || n % 10 === 3)) return `${n}er`
       return `${n}${gender === 'f' ? 'a' : 'o'}`
     }
     const sep = abbrDot ? '.' : ''
-    if (apocope && gender !== 'f' && (n === 1 || n === 3)) return `${n}${sep}ᵉʳ`
+    if (apocope && gender !== 'f' && (n % 10 === 1 || n % 10 === 3)) return `${n}${sep}ᵉʳ`
     return `${n}${sep}${gender === 'f' ? 'ᵃ' : 'ᵒ'}`
   }
 
