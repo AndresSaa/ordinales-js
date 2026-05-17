@@ -43,10 +43,10 @@ toOrdinal(21)                                     // 'vigésimo primero'
 toOrdinal(63, { gender: 'f' })                    // 'sexagésima tercera'
 toOrdinal(101, { apocope: true })                 // 'centésimo primer'
 toOrdinal(829)                                    // 'octingentésimo vigésimo noveno'
-toOrdinal(1,  { format: 'abbr' })                 // '1.º'
-toOrdinal(1,  { gender: 'f', format: 'abbr' })    // '1.ª'
+toOrdinal(1,  { format: 'abbr' })                 // '1.ᵒ'
+toOrdinal(1,  { gender: 'f', format: 'abbr' })    // '1.ᵃ'
 toOrdinal(1,  { apocope: true, format: 'abbr' })  // '1.ᵉʳ'
-toOrdinal(1,  { format: 'abbr', abbrDot: false }) // '1º'
+toOrdinal(1,  { format: 'abbr', abbrDot: false }) // '1ᵒ'
 ```
 
 **CommonJS**
@@ -54,16 +54,16 @@ toOrdinal(1,  { format: 'abbr', abbrDot: false }) // '1º'
 ```js
 const { toOrdinal } = require('ordinales-js')
 
-toOrdinal(1)                      // 'primero'
-toOrdinal(1, 'f')                 // 'primera'
-toOrdinal(1, { apocope: true })   // 'primer'
+toOrdinal(1)                     // 'primero'
+toOrdinal(1, 'f')                // 'primera'
+toOrdinal(1, { apocope: true })  // 'primer'
 ```
 
 **TypeScript**
 
 ```ts
 import { toOrdinal } from 'ordinales-js'
-import type { OrdinalGender, OrdinalOptions, OrdinalFormat } from 'ordinales-js'
+import type { OrdinalGender, OrdinalOptions, OrdinalFormat, OrdinalAbbrStyle } from 'ordinales-js'
 
 const opciones: OrdinalOptions = { gender: 'f', apocope: true }
 toOrdinal(21, opciones)           // 'vigésima primera'
@@ -72,7 +72,10 @@ const genero: OrdinalGender = 'f'
 toOrdinal(3, genero)              // 'tercera'
 
 const formato: OrdinalFormat = 'abbr'
-toOrdinal(1, { format: formato }) // '1.º'
+toOrdinal(1, { format: formato }) // '1.ᵒ'
+
+const estilo: OrdinalAbbrStyle = 'plain'
+toOrdinal(1, { format: 'abbr', abbrStyle: estilo }) // '1o'
 ```
 
 ## API
@@ -85,7 +88,7 @@ El segundo parámetro acepta un `string` de género o un objeto de opciones.
 |-------|---------|
 | `toOrdinal(n)` | género masculino por defecto |
 | `toOrdinal(n, 'f')` | género femenino |
-| `toOrdinal(n, { gender, apocope, format, abbrDot })` | objeto de opciones |
+| `toOrdinal(n, { gender, apocope, format, abbrDot, abbrStyle })` | objeto de opciones |
 
 #### Opciones
 
@@ -94,19 +97,20 @@ El segundo parámetro acepta un `string` de género o un objeto de opciones.
 | `gender` | `'m'` \| `'f'` | `'m'` | Género del ordinal |
 | `apocope` | `boolean` | `false` | Aplica apócope (`primero` → `primer`, `tercero` → `tercer`) |
 | `format` | `'full'` \| `'abbr'` | `'full'` | `'abbr'` devuelve la abreviatura tipográfica RAE con superíndice unicode |
-| `abbrDot` | `boolean` | `true` | Incluye el punto separador en `'abbr'` (`1.º` vs `1º`). Solo aplica cuando `format: 'abbr'` |
+| `abbrDot` | `boolean` | `true` | Incluye el punto separador en `'abbr'` (`1.ᵒ` vs `1ᵒ`). Solo aplica cuando `format: 'abbr'` y `abbrStyle: 'super'` |
+| `abbrStyle` | `'super'` \| `'plain'` | `'super'` | `'plain'` devuelve texto ASCII sin superíndices (`1o`, `1a`, `1er`). Útil para email o contextos sin soporte unicode completo |
 
 #### Género
 
 ```js
 // Forma abreviada (string)
-toOrdinal(1, 'm')               // 'primero'
-toOrdinal(1, 'f')               // 'primera'
+toOrdinal(1, 'm')              // 'primero'
+toOrdinal(1, 'f')              // 'primera'
 
 // Forma objeto
-toOrdinal(1,  { gender: 'f' })  // 'primera'
-toOrdinal(21, { gender: 'f' })  // 'vigésima primera'
-toOrdinal(63, { gender: 'f' })  // 'sexagésima tercera'
+toOrdinal(1,  { gender: 'f' }) // 'primera'
+toOrdinal(21, { gender: 'f' }) // 'vigésima primera'
+toOrdinal(63, { gender: 'f' }) // 'sexagésima tercera'
 ```
 
 #### Apócope
@@ -124,34 +128,46 @@ toOrdinal(1, { gender: 'f', apocope: true }) // 'primera'
 
 #### Abreviatura tipográfica (`format: 'abbr'`)
 
-Devuelve la forma abreviada oficial RAE usando superíndices unicode (`.º`, `.ª`, `.ᵉʳ`).
+Devuelve la forma abreviada oficial RAE usando superíndices unicode (`.ᵒ`, `.ᵃ`, `.ᵉʳ`).
 
 ```js
-toOrdinal(1,  { format: 'abbr' })                // '1.º'
-toOrdinal(1,  { gender: 'f', format: 'abbr' })   // '1.ª'
+toOrdinal(1,  { format: 'abbr' })                // '1.ᵒ'
+toOrdinal(1,  { gender: 'f', format: 'abbr' })   // '1.ᵃ'
 toOrdinal(3,  { apocope: true, format: 'abbr' }) // '3.ᵉʳ'
-toOrdinal(21, { gender: 'f', format: 'abbr' })   // '21.ª'
-toOrdinal(21, { apocope: true, format: 'abbr' }) // '21.º'  (apócope solo aplica en 1.ᵉʳ y 3.ᵉʳ)
+toOrdinal(21, { gender: 'f', format: 'abbr' })   // '21.ᵃ'
+toOrdinal(21, { apocope: true, format: 'abbr' }) // '21.ᵒ'  (apócope solo aplica en 1.ᵉʳ y 3.ᵉʳ)
 ```
 
 El punto separador sigue la norma RAE y está activo por defecto. Se puede omitir con `abbrDot: false` para contextos donde se prefiere la forma sin punto:
 
 ```js
-toOrdinal(1,  { format: 'abbr', abbrDot: false })                // '1º'
-toOrdinal(1,  { gender: 'f', format: 'abbr', abbrDot: false })   // '1ª'
+toOrdinal(1,  { format: 'abbr', abbrDot: false })                // '1ᵒ'
+toOrdinal(1,  { gender: 'f', format: 'abbr', abbrDot: false })   // '1ᵃ'
 toOrdinal(3,  { apocope: true, format: 'abbr', abbrDot: false }) // '3ᵉʳ'
+```
+
+#### Abreviatura en texto plano (`abbrStyle: 'plain'`)
+
+Devuelve la abreviatura sin superíndices unicode, en ASCII puro. Útil para email, hojas de cálculo o cualquier contexto donde los superíndices no se renderizan correctamente. `abbrDot` no tiene efecto en este modo.
+
+```js
+toOrdinal(1,  { format: 'abbr', abbrStyle: 'plain' })                // '1o'
+toOrdinal(1,  { gender: 'f', format: 'abbr', abbrStyle: 'plain' })   // '1a'
+toOrdinal(3,  { apocope: true, format: 'abbr', abbrStyle: 'plain' }) // '3er'
+toOrdinal(21, { format: 'abbr', abbrStyle: 'plain' })                // '21o'
+toOrdinal(21, { apocope: true, format: 'abbr', abbrStyle: 'plain' }) // '21o'  (apócope solo aplica en 1er y 3er)
 ```
 
 #### Números grandes
 
 ```js
-toOrdinal(10000)                        // 'décimo milésimo'
-toOrdinal(21000)                        // 'vigésimo primer milésimo'
-toOrdinal(21000, 'f')                   // 'vigésima primera milésima'
-toOrdinal(123456)                       // 'centésimo vigésimo tercer milésimo cuadrigentésimo quincuagésimo sexto'
-toOrdinal(1000000)                      // 'millonésimo'
-toOrdinal(2000000)                      // 'dosmillonésimo'
-toOrdinal(21000000, { apocope: true })  // 'vigésimo primer millonésimo'
+toOrdinal(10000)                       // 'décimo milésimo'
+toOrdinal(21000)                       // 'vigésimo primer milésimo'
+toOrdinal(21000, 'f')                  // 'vigésima primera milésima'
+toOrdinal(123456)                      // 'centésimo vigésimo tercer milésimo cuadrigentésimo quincuagésimo sexto'
+toOrdinal(1000000)                     // 'millonésimo'
+toOrdinal(2000000)                     // 'dosmillonésimo'
+toOrdinal(21000000, { apocope: true }) // 'vigésimo primer millonésimo'
 ```
 
 ### `enhance()`
@@ -161,16 +177,19 @@ Extiende el prototipo de `Number` para usar `toOrdinal` directamente sobre cualq
 ```js
 // ESM
 import { enhance } from 'ordinales-js'
+
 // CJS
 const { enhance } = require('ordinales-js')
+```
 
+```js
 enhance()
 
 const numero = 21
-numero.toOrdinal()                    // 'vigésimo primero'
-numero.toOrdinal('f')                 // 'vigésima primera'
-numero.toOrdinal({ gender: 'f' })     // 'vigésima primera'
-numero.toOrdinal({ apocope: true })   // 'vigésimo primer'
+numero.toOrdinal()                  // 'vigésimo primero'
+numero.toOrdinal('f')               // 'vigésima primera'
+numero.toOrdinal({ gender: 'f' })   // 'vigésima primera'
+numero.toOrdinal({ apocope: true }) // 'vigésimo primer'
 ```
 
 ### Tipos TypeScript
@@ -178,7 +197,7 @@ numero.toOrdinal({ apocope: true })   // 'vigésimo primer'
 El paquete incluye tipos nativos, sin necesidad de instalar `@types/ordinales-js`.
 
 ```ts
-import type { OrdinalGender, OrdinalOptions, OrdinalFormat } from 'ordinales-js'
+import type { OrdinalGender, OrdinalOptions, OrdinalFormat, OrdinalAbbrStyle } from 'ordinales-js'
 
 const opciones: OrdinalOptions = { gender: 'f', apocope: true }
 toOrdinal(21, opciones)           // 'vigésima primera'
@@ -187,7 +206,10 @@ const genero: OrdinalGender = 'f'
 toOrdinal(3, genero)              // 'tercera'
 
 const formato: OrdinalFormat = 'abbr'
-toOrdinal(1, { format: formato }) // '1.º'
+toOrdinal(1, { format: formato }) // '1.ᵒ'
+
+const estilo: OrdinalAbbrStyle = 'plain'
+toOrdinal(1, { format: 'abbr', abbrStyle: estilo }) // '1o'
 ```
 
 ## Casos de borde
@@ -213,11 +235,11 @@ npm run demo
 
 Cualquier interfaz que necesite expresar posiciones o rangos de forma escrita puede beneficiarse de esta librería.
 
-En **documentos legales y contratos notariales**, los ordinales escritos son requisito formal: cláusulas como "el vigésimo primer día del mes" o referencias a artículos ("el tercero del presente contrato") requieren precisión lingüística y de género. La opción `format: 'abbr'` cubre además las abreviaturas tipográficas RAE habituales en encabezados de documentos (1.º, 2.ª, 3.ᵉʳ).
+En **documentos legales y contratos notariales**, los ordinales escritos son requisito formal: cláusulas como "el vigésimo primer día del mes" o referencias a artículos ("el tercero del presente contrato") requieren precisión lingüística y de género. La opción `format: 'abbr'` cubre además las abreviaturas tipográficas RAE habituales en encabezados de documentos (1.ᵒ, 2.ᵃ, 3.ᵉʳ).
 
 En **formularios web y aplicaciones de gestión** es común presentar pasos de procesos, ediciones o versiones como ordinales ("paso primero", "segunda edición"). La API acepta género y apócope para adaptarse al sustantivo que acompaña al ordinal sin lógica adicional en el cliente.
 
-En **generadores de facturas e informes** los ordinales aparecen en referencias de línea, secciones o trimestres: "primer trimestre", "segunda línea de pedido", "tercer concepto facturado". La abreviatura tipográfica (`format: 'abbr'`) cubre además encabezados de columna como 1.º, 2.º, 3.º
+En **generadores de facturas e informes** los ordinales aparecen en referencias de línea, secciones o trimestres: "primer trimestre", "segunda línea de pedido", "tercer concepto facturado". La abreviatura tipográfica (`format: 'abbr'`) cubre encabezados de columna como 1.ᵒ, 2.ᵒ, 3.ᵒ, y `abbrStyle: 'plain'` permite exportar a formatos que no soportan superíndices unicode (Excel legacy, CSV, email).
 
 En **listados y rankings** mostrados al usuario (clasificaciones, resultados paginados, posiciones en tablas) el femenino automático permite mostrar "primera posición" o "tercera participante" sin tablas de traducción adicionales.
 

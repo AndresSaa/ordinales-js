@@ -41,6 +41,19 @@ numeros.forEach(n => {
   console.log(`${col1} | ${col2} | ${col3} | ${col4}`)
 })
 
+console.log("\n--- ABREVIATURAS TEXTO PLANO (format: 'abbr', abbrStyle: 'plain') ---\n")
+
+console.log("NUM      | ABREV. (M) | ABREV. APÓCOPE | ABREV. FEMENINO")
+console.log("---------|------------|----------------|----------------")
+
+numeros.forEach(n => {
+  const col1 = n.toString().padEnd(8)
+  const col2 = toOrdinal(n, { format: 'abbr', abbrStyle: 'plain' }).padEnd(10)
+  const col3 = toOrdinal(n, { apocope: true, format: 'abbr', abbrStyle: 'plain' }).padEnd(14)
+  const col4 = toOrdinal(n, { gender: 'f', format: 'abbr', abbrStyle: 'plain' })
+  console.log(`${col1} | ${col2} | ${col3} | ${col4}`)
+})
+
 console.log("\n----------------------------------\n")
 
 console.log("--- CASOS DE BORDE ---\n")

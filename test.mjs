@@ -61,35 +61,47 @@ test('casos de borde — floats se truncan', () => {
 })
 
 test('format abbr — masculino por defecto', () => {
-  assert.strictEqual(toOrdinal(1,  { format: 'abbr' }), '1.º')
-  assert.strictEqual(toOrdinal(2,  { format: 'abbr' }), '2.º')
-  assert.strictEqual(toOrdinal(21, { format: 'abbr' }), '21.º')
+  assert.strictEqual(toOrdinal(1,  { format: 'abbr' }), '1.ᵒ')
+  assert.strictEqual(toOrdinal(2,  { format: 'abbr' }), '2.ᵒ')
+  assert.strictEqual(toOrdinal(21, { format: 'abbr' }), '21.ᵒ')
 })
 
 test('format abbr — femenino', () => {
-  assert.strictEqual(toOrdinal(1,  { gender: 'f', format: 'abbr' }), '1.ª')
-  assert.strictEqual(toOrdinal(3,  { gender: 'f', format: 'abbr' }), '3.ª')
-  assert.strictEqual(toOrdinal(21, { gender: 'f', format: 'abbr' }), '21.ª')
+  assert.strictEqual(toOrdinal(1,  { gender: 'f', format: 'abbr' }), '1.ᵃ')
+  assert.strictEqual(toOrdinal(3,  { gender: 'f', format: 'abbr' }), '3.ᵃ')
+  assert.strictEqual(toOrdinal(21, { gender: 'f', format: 'abbr' }), '21.ᵃ')
 })
 
 test('format abbr — apócope solo en 1 y 3 masculino', () => {
   assert.strictEqual(toOrdinal(1,  { apocope: true, format: 'abbr' }), '1.ᵉʳ')
   assert.strictEqual(toOrdinal(3,  { apocope: true, format: 'abbr' }), '3.ᵉʳ')
-  assert.strictEqual(toOrdinal(21, { apocope: true, format: 'abbr' }), '21.º')
-  assert.strictEqual(toOrdinal(1,  { gender: 'f', apocope: true, format: 'abbr' }), '1.ª')
+  assert.strictEqual(toOrdinal(21, { apocope: true, format: 'abbr' }), '21.ᵒ')
+  assert.strictEqual(toOrdinal(1,  { gender: 'f', apocope: true, format: 'abbr' }), '1.ᵃ')
 })
 
 test('format abbr — abbrDot: false omite el punto', () => {
-  assert.strictEqual(toOrdinal(1,  { format: 'abbr', abbrDot: false }), '1º')
-  assert.strictEqual(toOrdinal(1,  { gender: 'f', format: 'abbr', abbrDot: false }), '1ª')
+  assert.strictEqual(toOrdinal(1,  { format: 'abbr', abbrDot: false }), '1ᵒ')
+  assert.strictEqual(toOrdinal(1,  { gender: 'f', format: 'abbr', abbrDot: false }), '1ᵃ')
   assert.strictEqual(toOrdinal(3,  { apocope: true, format: 'abbr', abbrDot: false }), '3ᵉʳ')
-  assert.strictEqual(toOrdinal(21, { format: 'abbr', abbrDot: false }), '21º')
+  assert.strictEqual(toOrdinal(21, { format: 'abbr', abbrDot: false }), '21ᵒ')
 })
 
 test('format abbr — casos de borde', () => {
   assert.strictEqual(toOrdinal(0,   { format: 'abbr' }), '')
   assert.strictEqual(toOrdinal(-1,  { format: 'abbr' }), '')
-  assert.strictEqual(toOrdinal(1.9, { format: 'abbr' }), '1.º')
+  assert.strictEqual(toOrdinal(1.9, { format: 'abbr' }), '1.ᵒ')
+})
+
+test('format abbr — abbrStyle: plain', () => {
+  assert.strictEqual(toOrdinal(1,  { format: 'abbr', abbrStyle: 'plain' }), '1o')
+  assert.strictEqual(toOrdinal(2,  { format: 'abbr', abbrStyle: 'plain' }), '2o')
+  assert.strictEqual(toOrdinal(21, { format: 'abbr', abbrStyle: 'plain' }), '21o')
+  assert.strictEqual(toOrdinal(1,  { gender: 'f', format: 'abbr', abbrStyle: 'plain' }), '1a')
+  assert.strictEqual(toOrdinal(21, { gender: 'f', format: 'abbr', abbrStyle: 'plain' }), '21a')
+  assert.strictEqual(toOrdinal(1,  { apocope: true, format: 'abbr', abbrStyle: 'plain' }), '1er')
+  assert.strictEqual(toOrdinal(3,  { apocope: true, format: 'abbr', abbrStyle: 'plain' }), '3er')
+  assert.strictEqual(toOrdinal(21, { apocope: true, format: 'abbr', abbrStyle: 'plain' }), '21o')
+  assert.strictEqual(toOrdinal(1,  { gender: 'f', apocope: true, format: 'abbr', abbrStyle: 'plain' }), '1a')
 })
 
 test('casos de borde — tipos inválidos lanzan TypeError', () => {
