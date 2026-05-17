@@ -7,6 +7,21 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.3.0] - 2026-05-17
+
+### Añadido
+- Opción `abbrStyle: 'super' | 'plain'` en `toOrdinal` (por defecto `'super'`)
+- `'plain'` devuelve la abreviatura en ASCII sin superíndices unicode: `1o`, `1a`, `1er`, `3er`
+- Nuevo tipo exportado `OrdinalAbbrStyle` en `src/ordinales.d.ts`
+- `abbrStyle` añadido a la interfaz `OrdinalOptions`
+
+### Cambiado
+- `format: 'abbr'` ahora usa modifier letters (`ᵒ` U+1D52, `ᵃ` U+1D43) en lugar de los
+  indicadores ordinales (`º` U+00BA, `ª` U+00AA), consistentes con `ᵉʳ` ya existente
+  y sin el subrayado que algunos navegadores aplican a los indicadores ordinales
+
+---
+
 ## [2.2.1] - 2026-05-16
 
 ### Añadido

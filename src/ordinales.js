@@ -65,7 +65,8 @@ const buildParts = (n, gender = 'm') => {
  * @param {'m'|'f'} [opciones.gender='m'] - Género del ordinal
  * @param {boolean} [opciones.apocope=false] - Aplica apócope (primero→primer, tercero→tercer)
  * @param {'full'|'abbr'} [opciones.format='full'] - Formato: texto completo o abreviatura tipográfica RAE
- * @param {boolean} [opciones.abbrDot=true] - Incluye punto en la abreviatura (1.º vs 1º)
+ * @param {boolean} [opciones.abbrDot=true] - Incluye punto en la abreviatura (1.ᵒ vs 1ᵒ)
+ * @param {'super'|'plain'} [opciones.abbrStyle='super'] - Estilo de abbr: superíndices unicode o texto plano (1o, 1a, 1er)
  * @returns {string} Ordinal en español, o cadena vacía para 0 y negativos
  * @throws {TypeError} Si el primer argumento no es un número válido
  *
@@ -73,22 +74,28 @@ const buildParts = (n, gender = 'm') => {
  * toOrdinal(1)                                    // 'primero'
  * toOrdinal(1, 'f')                               // 'primera'
  * toOrdinal(21, { gender: 'f', apocope: true })   // 'vigésima primera'
- * toOrdinal(1, { format: 'abbr' })                // '1.º'
+ * toOrdinal(1, { format: 'abbr' })                // '1.ᵒ'
+ * toOrdinal(1, { format: 'abbr', abbrStyle: 'plain' }) // '1o'
  */
 const toOrdinal = (number, options = 'm') => {
   if (typeof number !== 'number' || isNaN(number)) throw new TypeError(`toOrdinal: se esperaba un número, se recibió ${typeof number}`)
 
-  const n       = Math.trunc(number)
-  const gender  = typeof options === 'object' ? (options.gender  ?? 'm')    : options
-  const apocope = typeof options === 'object' ? (options.apocope ?? false)  : false
-  const format  = typeof options === 'object' ? (options.format  ?? 'full') : 'full'
-  const abbrDot = typeof options === 'object' ? (options.abbrDot ?? true)   : true
+  const n         = Math.trunc(number)
+  const gender    = typeof options === 'object' ? (options.gender    ?? 'm')           : options
+  const apocope   = typeof options === 'object' ? (options.apocope   ?? false)         : false
+  const format    = typeof options === 'object' ? (options.format    ?? 'full')        : 'full'
+  const abbrDot   = typeof options === 'object' ? (options.abbrDot   ?? true)          : true
+  const abbrStyle = typeof options === 'object' ? (options.abbrStyle ?? 'super') : 'super'
 
   if (format === 'abbr') {
     if (n <= 0) return ''
+    if (abbrStyle === 'plain') {
+      if (apocope && gender !== 'f' && (n === 1 || n === 3)) return `${n}er`
+      return `${n}${gender === 'f' ? 'a' : 'o'}`
+    }
     const sep = abbrDot ? '.' : ''
     if (apocope && gender !== 'f' && (n === 1 || n === 3)) return `${n}${sep}ᵉʳ`
-    return `${n}${sep}${gender === 'f' ? 'ª' : 'º'}`
+    return `${n}${sep}${gender === 'f' ? 'ᵃ' : 'ᵒ'}`
   }
 
   const ordinal = buildParts(n, gender)
