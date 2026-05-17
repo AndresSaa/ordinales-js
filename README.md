@@ -135,7 +135,7 @@ toOrdinal(1,  { format: 'abbr' })                // '1.ᵒ'
 toOrdinal(1,  { gender: 'f', format: 'abbr' })   // '1.ᵃ'
 toOrdinal(3,  { apocope: true, format: 'abbr' }) // '3.ᵉʳ'
 toOrdinal(21, { gender: 'f', format: 'abbr' })   // '21.ᵃ'
-toOrdinal(21, { apocope: true, format: 'abbr' }) // '21.ᵒ'  (apócope solo aplica en 1.ᵉʳ y 3.ᵉʳ)
+toOrdinal(21, { apocope: true, format: 'abbr' }) // '21.ᵉʳ'
 ```
 
 El punto separador sigue la norma RAE y está activo por defecto. Se puede omitir con `abbrDot: false` para contextos donde se prefiere la forma sin punto:
@@ -155,7 +155,7 @@ toOrdinal(1,  { format: 'abbr', abbrStyle: 'plain' })                // '1o'
 toOrdinal(1,  { gender: 'f', format: 'abbr', abbrStyle: 'plain' })   // '1a'
 toOrdinal(3,  { apocope: true, format: 'abbr', abbrStyle: 'plain' }) // '3er'
 toOrdinal(21, { format: 'abbr', abbrStyle: 'plain' })                // '21o'
-toOrdinal(21, { apocope: true, format: 'abbr', abbrStyle: 'plain' }) // '21o'  (apócope solo aplica en 1er y 3er)
+toOrdinal(21, { apocope: true, format: 'abbr', abbrStyle: 'plain' }) // '21er'
 ```
 
 #### Números grandes
