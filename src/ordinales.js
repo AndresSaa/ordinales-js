@@ -79,23 +79,20 @@ const buildParts = (n, gender = 'm') => {
  */
 const toOrdinal = (number, options = 'm') => {
   if (typeof number !== 'number' || isNaN(number)) throw new TypeError(`toOrdinal: se esperaba un número, se recibió ${typeof number}`)
+  if (number <= 0) return ''
 
   const n         = Math.trunc(number)
-  const gender    = typeof options === 'object' ? (options.gender    ?? 'm')           : options
-  const apocope   = typeof options === 'object' ? (options.apocope   ?? false)         : false
-  const format    = typeof options === 'object' ? (options.format    ?? 'full')        : 'full'
-  const abbrDot   = typeof options === 'object' ? (options.abbrDot   ?? true)          : true
-  const abbrStyle = typeof options === 'object' ? (options.abbrStyle ?? 'super') : 'super'
+  const gender    = typeof options === 'object' ? (options.gender    ?? 'm')    : options
+  const apocope   = typeof options === 'object' ? (options.apocope   ?? false)  : false
+  const format    = typeof options === 'object' ? (options.format    ?? 'full') : 'full'
+  const abbrDot   = typeof options === 'object' ? (options.abbrDot   ?? true)   : true
+  const abbrStyle = typeof options === 'object' ? (options.abbrStyle ?? 'super'): 'super'
 
   if (format === 'abbr') {
-    if (n <= 0) return ''
-    if (abbrStyle === 'plain') {
-      if (apocope && gender !== 'f' && (n % 10 === 1 || n % 10 === 3)) return `${n}er`
-      return `${n}${gender === 'f' ? 'a' : 'o'}`
-    }
+    const apocopeAbbr = apocope && gender !== 'f' && (n % 10 === 1 || n % 10 === 3)
+    if (abbrStyle === 'plain') return apocopeAbbr ? `${n}er` : `${n}${gender === 'f' ? 'a' : 'o'}`
     const sep = abbrDot ? '.' : ''
-    if (apocope && gender !== 'f' && (n % 10 === 1 || n % 10 === 3)) return `${n}${sep}ᵉʳ`
-    return `${n}${sep}${gender === 'f' ? 'ᵃ' : 'ᵒ'}`
+    return apocopeAbbr ? `${n}${sep}ᵉʳ` : `${n}${sep}${gender === 'f' ? 'ᵃ' : 'ᵒ'}`
   }
 
   const ordinal = buildParts(n, gender)

@@ -1,6 +1,6 @@
 {
   "name": "ordinales-js",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Librería para convertir números cardinales a ordinales en español. Spanish ordinal numbers library with gender and apocope support.",
   "main": "./src/index.js",
   "types": "./src/ordinales.d.ts",

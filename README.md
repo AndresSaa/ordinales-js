@@ -31,51 +31,36 @@ npm install ordinales-js
 
 ## Uso
 
-**ES Modules**
+**Importación**
 
 ```js
+// ES Modules
 import { toOrdinal } from 'ordinales-js'
-
-toOrdinal(1)                                      // 'primero'
-toOrdinal(1, 'f')                                 // 'primera'
-toOrdinal(1, { apocope: true })                   // 'primer'
-toOrdinal(21)                                     // 'vigésimo primero'
-toOrdinal(63, { gender: 'f' })                    // 'sexagésima tercera'
-toOrdinal(101, { apocope: true })                 // 'centésimo primer'
-toOrdinal(829)                                    // 'octingentésimo vigésimo noveno'
-toOrdinal(1,  { format: 'abbr' })                 // '1.ᵒ'
-toOrdinal(1,  { gender: 'f', format: 'abbr' })    // '1.ᵃ'
-toOrdinal(1,  { apocope: true, format: 'abbr' })  // '1.ᵉʳ'
-toOrdinal(1,  { format: 'abbr', abbrDot: false }) // '1ᵒ'
 ```
-
-**CommonJS**
 
 ```js
+// CommonJS
 const { toOrdinal } = require('ordinales-js')
-
-toOrdinal(1)                     // 'primero'
-toOrdinal(1, 'f')                // 'primera'
-toOrdinal(1, { apocope: true })  // 'primer'
 ```
-
-**TypeScript**
 
 ```ts
+// TypeScript — tipos incluidos sin @types/
 import { toOrdinal } from 'ordinales-js'
-import type { OrdinalGender, OrdinalOptions, OrdinalFormat, OrdinalAbbrStyle } from 'ordinales-js'
+import type { OrdinalOptions } from 'ordinales-js'
+```
 
-const opciones: OrdinalOptions = { gender: 'f', apocope: true }
-toOrdinal(21, opciones)           // 'vigésima primera'
+**Ejemplos rápidos**
 
-const genero: OrdinalGender = 'f'
-toOrdinal(3, genero)              // 'tercera'
-
-const formato: OrdinalFormat = 'abbr'
-toOrdinal(1, { format: formato }) // '1.ᵒ'
-
-const estilo: OrdinalAbbrStyle = 'plain'
-toOrdinal(1, { format: 'abbr', abbrStyle: estilo }) // '1o'
+```js
+toOrdinal(1)                                          // 'primero'
+toOrdinal(1, 'f')                                     // 'primera'
+toOrdinal(21, { gender: 'f' })                        // 'vigésima primera'
+toOrdinal(103, { apocope: true })                     // 'centésimo tercer'
+toOrdinal(839)                                        // 'octingentésimo trigésimo noveno'
+toOrdinal(1, { format: 'abbr' })                      // '1.ᵒ'
+toOrdinal(3, { format: 'abbr', apocope: true })       // '3.ᵉʳ'
+toOrdinal(5, { format: 'abbr', abbrStyle: 'plain' })  // '5o'
+toOrdinal(8, { format: 'abbr', gender: 'f' })         // '8a'
 ```
 
 ## API
@@ -175,21 +160,22 @@ toOrdinal(21000000, { apocope: true }) // 'vigésimo primer millonésimo'
 Extiende el prototipo de `Number` para usar `toOrdinal` directamente sobre cualquier número.
 
 ```js
-// ESM
+// ES Modules
 import { enhance } from 'ordinales-js'
+```
 
-// CJS
+```js
+// CommonJS
 const { enhance } = require('ordinales-js')
 ```
 
 ```js
 enhance()
 
-const numero = 21
-numero.toOrdinal()                  // 'vigésimo primero'
-numero.toOrdinal('f')               // 'vigésima primera'
-numero.toOrdinal({ gender: 'f' })   // 'vigésima primera'
-numero.toOrdinal({ apocope: true }) // 'vigésimo primer'
+const n = 21
+n.toOrdinal()                   // 'vigésimo primero'
+n.toOrdinal('f')                // 'vigésima primera'
+n.toOrdinal({ apocope: true })  // 'vigésimo primer'
 ```
 
 ### Tipos TypeScript
