@@ -7,6 +7,21 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.3.1] - 2026-05-18
+
+### Cambiado
+- Sección "Uso" del README reorganizada: importación y ejemplos separados,
+  bloques por runtime (ESM / CommonJS / TypeScript), ejemplos rápidos reducidos
+  a los casos más representativos
+- Imagen de cabecera del README actualizada
+
+### Refactorizado
+- `toOrdinal`: check `n <= 0` unificado al inicio de la función, eliminando
+  el duplicado en el bloque `abbr`
+- Condición de apócope en `abbr` extraída a `apocopeAbbr` para evitar repetición
+
+---
+
 ## [2.3.0] - 2026-05-17
 
 ### Añadido
