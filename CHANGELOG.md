@@ -9,10 +9,14 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [2.3.1] - 2026-05-18
 
+### Añadido
+- `SECURITY.md`: política de seguridad con versiones soportadas y canal de reporte
+  de vulnerabilidades
+
 ### Cambiado
 - Sección "Uso" del README reorganizada: importación y ejemplos separados,
   bloques por runtime (ESM / CommonJS / TypeScript), ejemplos rápidos reducidos
-  a los casos más representativos
+  a los casos más representativos y agrupados por tipo (completos / abreviados)
 - Imagen de cabecera del README actualizada
 
 ### Refactorizado

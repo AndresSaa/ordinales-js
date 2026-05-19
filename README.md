@@ -52,15 +52,17 @@ import type { OrdinalOptions } from 'ordinales-js'
 **Ejemplos rápidos**
 
 ```js
+/* Ordinales completos */
 toOrdinal(1)                                          // 'primero'
 toOrdinal(1, 'f')                                     // 'primera'
 toOrdinal(21, { gender: 'f' })                        // 'vigésima primera'
 toOrdinal(103, { apocope: true })                     // 'centésimo tercer'
 toOrdinal(839)                                        // 'octingentésimo trigésimo noveno'
+/* Ordinales abreviados */
 toOrdinal(1, { format: 'abbr' })                      // '1.ᵒ'
-toOrdinal(3, { format: 'abbr', apocope: true })       // '3.ᵉʳ'
-toOrdinal(5, { format: 'abbr', abbrStyle: 'plain' })  // '5o'
-toOrdinal(8, { format: 'abbr', gender: 'f' })         // '8a'
+toOrdinal(8, { format: 'abbr', gender: 'f' })         // '8.ᵃ'
+toOrdinal(13, { format: 'abbr', apocope: true })      // '13.ᵉʳ'
+toOrdinal(45, { format: 'abbr', abbrStyle: 'plain' }) // '45o'
 ```
 
 ## API
