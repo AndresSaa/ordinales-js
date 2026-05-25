@@ -1,0 +1,17 @@
+coverage/
+.nyc_output/
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+dist/
+.git/
+.github/
+
+# Preservar espaciados y alineaciones manuales del autor
+README.md
+CHANGELOG.md
+SECURITY.md
+demo.mjs
+src/ordinales.js
+src/index.js
+test.mjs

@@ -10,10 +10,9 @@ node_modules/
 # Dist directory
 dist/
 
-# Lockfiles — no se commitean en librerías públicas
+# Ignorar lockfiles accidentales de otros gestores de paquetes
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
 
 # Optional npm cache directory
 .npm

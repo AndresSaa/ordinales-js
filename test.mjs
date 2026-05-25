@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { toOrdinal } from './src/index.js'
+import { toOrdinal, enhance } from './src/index.js'
 
 test('ordinales básicos', () => {
   assert.strictEqual(toOrdinal(1),      'primero')
@@ -120,3 +120,16 @@ test('casos de borde — tipos inválidos lanzan TypeError', () => {
   assert.throws(() => toOrdinal({ gender: 'f' }), TypeError)
   assert.throws(() => toOrdinal([1, 2, 3]),       TypeError)
 })
+
+test('extensión del prototipo con enhance()', () => {
+  enhance()
+
+  assert.strictEqual((1).toOrdinal(),                   'primero')
+  assert.strictEqual((21).toOrdinal({ gender: 'f' }),   'vigésima primera')
+  assert.strictEqual((103).toOrdinal({ apocope: true }), 'centésimo tercer')
+
+  // Pruebas sobre objetos envoltura Number (boxed)
+  assert.strictEqual(new Number(3).toOrdinal(),         'tercero')
+  assert.strictEqual(new Number(21).toOrdinal({ gender: 'f', apocope: true }), 'vigésima primera')
+})
+
