@@ -10,5 +10,8 @@ export interface OrdinalOptions {
   abbrStyle?: OrdinalAbbrStyle
 }
 
-export function toOrdinal(n: number, options?: OrdinalGender | OrdinalOptions): string
+export function toOrdinal(
+  n: number,
+  options?: OrdinalGender | OrdinalOptions
+): string
 export function enhance(): void

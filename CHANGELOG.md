@@ -7,6 +7,24 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.3.2] - 2026-05-25
+
+### Solucionado
+- `enhance`: corregido error de tipo al invocar `.toOrdinal()` sobre objetos `Number` envoltura (`new Number(x)`) gracias a la extracción del valor primitivo con `.valueOf()` en el enlace del prototipo
+
+### Cambiado
+- `ordinales.mjs`: simplificada la re-exportación ESM usando exportación directa estática para evitar el uso dinámico de `createRequire`, mejorando la compatibilidad con empaquetadores modernos (Vite, Rollup, Webpack)
+- Flujo de CI: actualizado el workflow de GitHub Actions para usar `pnpm` con su archivo de bloqueo congelado (`pnpm-lock.yaml`) y ejecutar las validaciones de calidad de forma automática
+
+### Añadido
+- Suite de pruebas de extensión: cobertura unitaria robusta para la extensión del prototipo `Number` con `enhance()`, incluyendo asertos de compatibilidad con objetos Number envoltura
+- Infraestructura de calidad: integración formal de ESLint v9 Flat Config, formateo estricto con Prettier e ignores personalizados, y verificación estática automatizada del archivo de tipos `.d.ts` con TypeScript (`tsc`)
+
+### Eliminado
+- Archivos obsoletos `eslint.config.cjs` y `.eslintignore`, reemplazados formalmente por la configuración nativa Flat Config de ESLint v9
+
+---
+
 ## [2.3.1] - 2026-05-18
 
 ### Añadido
