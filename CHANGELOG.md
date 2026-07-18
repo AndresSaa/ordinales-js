@@ -7,6 +7,13 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.3.3] - 2026-07-18
+
+### Solucionado
+- Vulnerabilidad de denegación de servicio (DoS) por complejidad cuadrática en `js-yaml`, dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc`, explotable con alias repetidos en claves de fusión YAML — actualizado `@eslint/eslintrc` a `3.3.6`, que sube `js-yaml` a la versión parcheada `4.3.0` ([GHSA-h67p-54hq-rp68](https://github.com/advisories/GHSA-h67p-54hq-rp68))
+
+---
+
 ## [2.3.2] - 2026-05-25
 
 ### Solucionado
