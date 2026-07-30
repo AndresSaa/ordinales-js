@@ -1,0 +1,11 @@
+# Finales de línea: LF tanto en el repositorio como en el working tree,
+# con independencia de lo que tenga configurado cada máquina en core.autocrlf.
+#
+# Sin esto, un checkout en Windows con core.autocrlf=true deja el working tree
+# en CRLF mientras Prettier usa endOfLine: "lf" por defecto, y `pnpm format:check`
+# falla en local sobre archivos intactos aunque CI (Linux, LF) esté en verde.
+* text=auto eol=lf
+
+# Binarios: sin conversión de finales de línea ni diff textual.
+*.png binary
+*.sketch binary
