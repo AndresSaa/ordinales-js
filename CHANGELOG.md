@@ -7,6 +7,13 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 
 ---
 
+## [2.3.4] - 2026-07-30
+
+### Solucionado
+- Vulnerabilidad de denegación de servicio (DoS) por expansión de tiempo exponencial en `brace-expansion`, dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc` → `minimatch`, explotable con grupos `{}` consecutivos no expansibles — actualizado `brace-expansion` a `1.1.18`, por encima de la versión parcheada `1.1.16` ([GHSA-3jxr-9vmj-r5cp](https://github.com/advisories/GHSA-3jxr-9vmj-r5cp))
+
+---
+
 ## [2.3.3] - 2026-07-18
 
 ### Solucionado
