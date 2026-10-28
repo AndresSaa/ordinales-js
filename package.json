@@ -51,8 +51,8 @@
   },
   "homepage": "https://github.com/AndresSaa/ordinales-js#readme",
   "devDependencies": {
-    "eslint": "^9.39.4",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3"
   }
 }
