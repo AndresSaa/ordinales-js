@@ -10,25 +10,25 @@ y este proyecto sigue [Versionado Semántico](https://semver.org/lang/es/).
 ## [2.3.5] - 2026-10-28
 
 ### Solucionado
-- Vulnerabilidades de denegación de servicio (DoS) por consumo cuadrático de CPU en `js-yaml` (resolución de `!!omap` y fuentes de fusión vacías con `maxTotalMergeKeys`), dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc` — actualizado `@eslint/eslintrc` a `3.3.7`, que sube `js-yaml` a la versión parcheada `4.3.2` ([GHSA-5p4m-2wfm-xmqj](https://github.com/advisories/GHSA-5p4m-2wfm-xmqj), [GHSA-2883-xcg3-v3hh](https://github.com/advisories/GHSA-2883-xcg3-v3hh)). No afecta al paquete publicado en npm
-- Vulnerabilidades de denegación de servicio (DoS) por recursión no controlada y expansión cuadrática en `brace-expansion` (`parseCommaParts`, grupos de llaves anidados y reescritura `{a},b}`), dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc` → `minimatch`, `eslint` → `@eslint/config-array` → `minimatch` y `eslint` → `minimatch` — actualizado `brace-expansion` a la versión parcheada `1.1.21` ([GHSA-6j4f-fj2g-mc7p](https://github.com/advisories/GHSA-6j4f-fj2g-mc7p), [GHSA-qhr7-859c-m2p7](https://github.com/advisories/GHSA-qhr7-859c-m2p7), [GHSA-q2hr-2g5m-vwhr](https://github.com/advisories/GHSA-q2hr-2g5m-vwhr)). No afecta al paquete publicado en npm
+- `js-yaml` actualizado a `4.3.2` (vía `eslint` → `@eslint/eslintrc`) para corregir vulnerabilidades de DoS en dependencia de desarrollo ([GHSA-5p4m-2wfm-xmqj](https://github.com/advisories/GHSA-5p4m-2wfm-xmqj), [GHSA-2883-xcg3-v3hh](https://github.com/advisories/GHSA-2883-xcg3-v3hh)). No afecta al paquete publicado
+- `brace-expansion` actualizado a `1.1.21` (vía `eslint` → `minimatch`) para corregir vulnerabilidades de DoS en dependencia de desarrollo ([GHSA-6j4f-fj2g-mc7p](https://github.com/advisories/GHSA-6j4f-fj2g-mc7p), [GHSA-qhr7-859c-m2p7](https://github.com/advisories/GHSA-qhr7-859c-m2p7), [GHSA-q2hr-2g5m-vwhr](https://github.com/advisories/GHSA-q2hr-2g5m-vwhr)). No afecta al paquete publicado
 
 ### Cambiado
-- Dependencias de desarrollo actualizadas: `eslint` a `9.39.5`, `prettier` a `3.9.10` y rango de `typescript` alineado a `^5.9.3`
+- Dependencias de desarrollo actualizadas (`eslint` `9.39.5`, `prettier` `3.9.10`, `typescript` `5.9.3`)
 
 ---
 
 ## [2.3.4] - 2026-07-30
 
 ### Solucionado
-- Vulnerabilidad de denegación de servicio (DoS) por expansión de tiempo exponencial en `brace-expansion`, dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc` → `minimatch`, explotable con grupos `{}` consecutivos no expansibles — actualizado `brace-expansion` a `1.1.18`, por encima de la versión parcheada `1.1.16` ([GHSA-3jxr-9vmj-r5cp](https://github.com/advisories/GHSA-3jxr-9vmj-r5cp))
+- `brace-expansion` actualizado a `1.1.18` (vía `eslint` → `@eslint/eslintrc` → `minimatch`) para corregir una vulnerabilidad de DoS en dependencia de desarrollo ([GHSA-3jxr-9vmj-r5cp](https://github.com/advisories/GHSA-3jxr-9vmj-r5cp)). No afecta al paquete publicado
 
 ---
 
 ## [2.3.3] - 2026-07-18
 
 ### Solucionado
-- Vulnerabilidad de denegación de servicio (DoS) por complejidad cuadrática en `js-yaml`, dependencia transitiva de desarrollo vía `eslint` → `@eslint/eslintrc`, explotable con alias repetidos en claves de fusión YAML — actualizado `@eslint/eslintrc` a `3.3.6`, que sube `js-yaml` a la versión parcheada `4.3.0` ([GHSA-h67p-54hq-rp68](https://github.com/advisories/GHSA-h67p-54hq-rp68))
+- `js-yaml` actualizado a `4.3.0` (vía `eslint` → `@eslint/eslintrc`) para corregir una vulnerabilidad de DoS en dependencia de desarrollo ([GHSA-h67p-54hq-rp68](https://github.com/advisories/GHSA-h67p-54hq-rp68)). No afecta al paquete publicado
 
 ---
 
